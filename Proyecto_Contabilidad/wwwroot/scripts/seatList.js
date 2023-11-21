@@ -3,27 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadDataFromAPI() {
-    fetch(base_url + '/Account')
+    fetch(base_url + '/Seat')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('tableBody');
 
             data.forEach(item => {
 
-                var conversion = "";
-
-                listConversion.forEach(opc => {
-                    if (item.conversion == opc.id) {
-                        conversion = opc.name;
-                    }
-                })
-
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
-                                            <td>${item.accountCode}</td>
-                                            <td>${item.accountName}</td>
-                                            <td>${item.accountType}</td>
-                                            <td>${conversion}</td>
+                                            <td>${item.id}</td>
+                                            <td>${item.date_seat}</td>
+                                            <td>${item.reference}</td>                                          
                                             <td>
                                                 <div class="dropdown">
                                                     <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"

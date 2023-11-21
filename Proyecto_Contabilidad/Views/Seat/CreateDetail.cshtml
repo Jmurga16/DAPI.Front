@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-name" content="mono" />
 
+    <title>Mono - Responsive Admin & Dashboard Template</title>
+
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
     <link href="~/plugins/material/css/materialdesignicons.min.css" rel="stylesheet" />
@@ -13,7 +15,13 @@
 
     <!-- PLUGINS CSS STYLE -->
     <link href="~/plugins/nprogress/nprogress.css" rel="stylesheet" />
+
     <link href="~/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="~/css/style.css" />
@@ -21,6 +29,7 @@
     <!-- FAVICON -->
     <link href="~/images/favicon.png" rel="shortcut icon" />
 
+    <script src="~/plugins/jquery/jquery.min.js"></script>
     <script src="~/plugins/nprogress/nprogress.js"></script>
 </head>
 
@@ -35,6 +44,7 @@
     ——— WRAPPER
     ===================================== -->
     <div class="wrapper">
+
 
         <!-- ====================================
           ——— LEFT SIDEBAR WITH OUT FOOTER
@@ -136,6 +146,8 @@
             </div>
         </aside>
 
+
+
         <!-- ====================================
         ——— PAGE WRAPPER
         ===================================== -->
@@ -152,7 +164,6 @@
                     <span class="page-title">Crear Asiento</span>
 
                     <div class="navbar-right ">
-                                               
                     </div>
 
                     <ul class="nav navbar-nav">
@@ -163,79 +174,76 @@
                             <a class="dropdown-link-item" href="@Url.Action("Index", "Home")"> <i class="mdi mdi-logout"></i> Salir </a>
                         </li>
                     </ul>
+
                 </nav>
             </header>
-
 
             <!-- ====================================
             ——— CONTENT WRAPPER
             ===================================== -->
             <!-- Cuentas -->
-            <div class="card card-default" style="margin-top:2rem">
+            <div class="card card-default">
+                <div class="card-header">
+                    <a class="btn btn-primary" onclick="saveDetail()">Guardar</a>
+                    <a class="btn btn-primary" href="@Url.Action("CreateDetail", "Seat")">Siguiente</a>
+
+                </div>
 
                 <div class="card-body">
 
                     <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput4">Fecha</label>
-                            <input type="date" id="date_seat" class="form-control" placeholder="" required>
-                        </div>
 
+                        <label for="account_select">Cuenta</label>
+                        <select class="account_select" data-placeholder="Cuenta" name="account_select" style="width:100%">
+                        </select>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">currency</label>
-                            <select class="form-control" id="currency">
-                                <option value="USD">USD</option>
-                                <option value="CRC">CRC</option>
-                            </select>
+                            <label for="amount">Monto</label>
+                            <input type="number" class="form-control" id="amount" placeholder="">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput4">Tipo de cambio</label>
-                            <input type="number" id="exchange_rate" class="form-control" placeholder="" required>
+                            <label for="description">Descripción</label>
+                            <input type="text" class="form-control" id="description" placeholder="">
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleFormControlInput4">Referencia</label>
-                            <input type="text" id="reference" class="form-control" placeholder="" required>
-                        </div>
-                        <a id="btnCreate" class="btn btn-primary" onclick="addSeat()">Crear</a>
+
                     </form>
 
-                    <br>
-                    <br>
-
-                    <!-- Footer -->
-                    <footer class="footer mt-auto">
-                        <div class="copyright bg-white">
-                            <p>
-                                &copy; <span id="copy-year"></span> Copyright RG Advisory Group
-                            </p>
-                        </div>
-                        <script>
-                            var d = new Date();
-                            var year = d.getFullYear();
-                            document.getElementById("copy-year").innerHTML = year;
-                        </script>
-                    </footer>
-
                 </div>
+
+                <!-- Footer -->
+                <footer class="footer mt-auto">
+                    <div class="copyright bg-white">
+                        <p>
+                            &copy; <span id="copy-year"></span> Copyright RG Advisory Group
+                        </p>
+                    </div>
+                    <script>
+                        var d = new Date();
+                        var year = d.getFullYear();
+                        document.getElementById("copy-year").innerHTML = year;
+                    </script>
+                </footer>
+
             </div>
         </div>
-    </div>
 
-    <script src="~/plugins/jquery/jquery.min.js"></script>
-    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/plugins/simplebar/simplebar.min.js"></script>
-    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
-    <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
 
-    <script src="~/js/mono.js"></script>
-    <script src="~/js/map.js"></script>
-    <script src="~/js/custom.js"></script>
-    <script src="~/scripts/seat.js"></script>
+        <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/plugins/simplebar/simplebar.min.js"></script>
+        <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+        <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+
+        <script src="~/js/mono.js"></script>
+        <script src="~/js/map.js"></script>
+        <script src="~/js/custom.js"></script>
+        <script src="~/scripts/seat.js"></script>
+        <script src="~/scripts/seatDetail.js" defer></script>
 
 </body>
 </html>
+
 
 

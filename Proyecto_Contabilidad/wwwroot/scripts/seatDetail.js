@@ -3,6 +3,11 @@
 
 //#endregion
 
+document.addEventListener("DOMContentLoaded", () => {
+    getAccountCatalog()
+
+});
+
 function addSeat() {
     // Obtener los valores de los campos
     var date_seat = $("#date_seat").val();
@@ -23,12 +28,12 @@ function addSeat() {
 
     // Si todas las validaciones pasan, enviar los datos al servidor
     var formData = {
-        id:0,
-        date_seat: date_seat,
+        id: 0,
+        date: date_seat,
         currency: currency,
         exchange_rate: exchange_rate,
         reference: reference,
-        customer_id : 1,
+        customer_id: 1,
         status: false
     };
 
@@ -42,12 +47,13 @@ function addSeat() {
         success: function (data) {
             // Procesar la respuesta si es necesario
             // Puedes mostrar un mensaje de éxito o actualizar la lista de clientes, por ejemplo
-            $("#date_seat").val("");
+            $("#date").val("");
             $("#currency").val("");
             $("#exchange_rate").val("");
             $("#reference").val("");
             $("#status").val("");
-                       
+
+            getAccountCatalog();
             window.location.href = url_front + "Seat/CreateDetail/" + data.id;
         },
         error: function (error) {
@@ -57,3 +63,13 @@ function addSeat() {
     });
 }
 
+function getAccountCatalog() {
+
+    $(".account_select").select2({
+        ajax: {
+            type: "GET",
+            url: base_url + "/Account/Select",
+            cache: false,  
+        }
+    });
+}

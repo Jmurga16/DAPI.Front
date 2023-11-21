@@ -84,5 +84,11 @@ namespace Proyecto_Contabilidad.Controllers
                 return View();
             }
         }
+
+        public ActionResult CreateDetail(int? id)
+        {
+            return View(id);
+        }
+
     }
 }

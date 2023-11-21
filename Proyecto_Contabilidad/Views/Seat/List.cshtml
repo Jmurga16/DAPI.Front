@@ -95,14 +95,14 @@
 
                             <ul class="collapse show sub-menu" id="email" data-parent="#sidebar-menu">
 
-                                <li class="active">
+                                <li>
                                     <a class="sidenav-item-link" href="@Url.Action("Create", "Seat")">
                                         <span class="nav-text">Crear</span>
 
                                     </a>
                                 </li>
 
-                                <li>
+                                <li class="active">
                                     <a class="sidenav-item-link" href="@Url.Action("List", "Seat")">
                                         <span class="nav-text">Listar</span>
 
@@ -152,7 +152,6 @@
                     <span class="page-title">Crear Asiento</span>
 
                     <div class="navbar-right ">
-                                               
                     </div>
 
                     <ul class="nav navbar-nav">
@@ -167,75 +166,75 @@
             </header>
 
 
+
+
+
             <!-- ====================================
             ——— CONTENT WRAPPER
             ===================================== -->
-            <!-- Cuentas -->
-            <div class="card card-default" style="margin-top:2rem">
+            <div class="card card-default">
 
                 <div class="card-body">
 
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput4">Fecha</label>
-                            <input type="date" id="date_seat" class="form-control" placeholder="" required>
+                    @* <table id="productsTable" class="table table-hover table-product" style="width:100%">
+
+                        <!-- Data Input -->
+                        <label class="text-dark font-weight-medium" for="">N. Asiento</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text mdi mdi-calendar" id="basic-addon1"></span>
+                            </div>
+                            <input type="text" class="form-control" data-mask="00/00/0000">
                         </div>
 
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">currency</label>
-                            <select class="form-control" id="currency">
-                                <option value="USD">USD</option>
-                                <option value="CRC">CRC</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput4">Tipo de cambio</label>
-                            <input type="number" id="exchange_rate" class="form-control" placeholder="" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput4">Referencia</label>
-                            <input type="text" id="reference" class="form-control" placeholder="" required>
-                        </div>
-                        <a id="btnCreate" class="btn btn-primary" onclick="addSeat()">Crear</a>
-                    </form>
-
-                    <br>
-                    <br>
-
-                    <!-- Footer -->
-                    <footer class="footer mt-auto">
-                        <div class="copyright bg-white">
-                            <p>
-                                &copy; <span id="copy-year"></span> Copyright RG Advisory Group
-                            </p>
-                        </div>
-                        <script>
-                            var d = new Date();
-                            var year = d.getFullYear();
-                            document.getElementById("copy-year").innerHTML = year;
-                        </script>
-                    </footer>
-
+                        <a class="btn btn-primary" href="@Url.Action("Editar2", "Home")">Ver</a>
+                    </table> *@
                 </div>
+
+                <br>
+                <br>
+           
+                <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Código asiento</th>
+                            <th>Fecha</th>
+                            <th>Referencia</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+
+
+                <!-- Footer -->
+                <footer class="footer mt-auto">
+                    <div class="copyright bg-white">
+                        <p>
+                            &copy; <span id="copy-year"></span> Copyright RG Advisory Group
+                        </p>
+                    </div>
+                    <script>
+                        var d = new Date();
+                        var year = d.getFullYear();
+                        document.getElementById("copy-year").innerHTML = year;
+                    </script>
+                </footer>
+
             </div>
         </div>
-    </div>
 
-    <script src="~/plugins/jquery/jquery.min.js"></script>
-    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/plugins/simplebar/simplebar.min.js"></script>
-    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
-    <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+        <script src="~/plugins/jquery/jquery.min.js"></script>
+        <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/plugins/simplebar/simplebar.min.js"></script>
+        <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+        <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
 
-    <script src="~/js/mono.js"></script>
-    <script src="~/js/map.js"></script>
-    <script src="~/js/custom.js"></script>
-    <script src="~/scripts/seat.js"></script>
+        <script src="~/js/mono.js"></script>
+        <script src="~/js/map.js"></script>
+        <script src="~/js/custom.js"></script>
+        <script src="~/scripts/seatList.js"></script> 
 
 </body>
 </html>
-
 

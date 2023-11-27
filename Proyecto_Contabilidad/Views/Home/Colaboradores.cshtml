@@ -24,8 +24,6 @@
 
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
-    <link href="~/plugins/toaster/toastr.min.css" rel="stylesheet" />
-
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="~/css/style.css" />
 
@@ -41,9 +39,6 @@
         NProgress.configure({ showSpinner: false });
         NProgress.start();
     </script>
-
-
-    <div id="toaster"></div>
 
 
     <!-- ====================================
@@ -70,14 +65,12 @@
                 <div class="sidebar-left" data-simplebar style="height: 100%;">
                     <!-- sidebar menu -->
                     <ul class="nav sidebar-inner" id="sidebar-menu">
-
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Asientos", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("Privacy", "Home")">
                                 <i class="mdi mdi-home-circle"></i>
                                 <span class="nav-text">Principal</span>
                             </a>
                         </li>
-
 
                         <li class="active">
                             <a class="sidenav-item-link" href="@Url.Action("Colaboradores", "Home")">
@@ -85,7 +78,6 @@
                                 <span class="nav-text">Colaboradores</span>
                             </a>
                         </li>
-
 
                         <li>
                             <a class="sidenav-item-link" href="@Url.Action("Metricas", "Home")">
@@ -98,8 +90,6 @@
                             Funciones
                         </li>
 
-
-
                         <li>
                             <a class="sidenav-item-link" href="@Url.Action("Cliente", "Home")">
                                 <i class="mdi mdi-account"></i>
@@ -107,205 +97,148 @@
                             </a>
                         </li>
 
-
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
-                               aria-expanded="false" aria-controls="emai>
-                                <i class="mdi mdi-email"></i>
+                               aria-expanded="false" aria-controls="email">
+
                                 <i class="mdi mdi-square-edit-outline"></i>
                                 <span class="nav-text">Asiento</span><b class="caret"></b>
                             </a>
 
-                            <ul class="collapse" id="email"
-                                data-parent="#sidebar-menu">
-                                <div class="sub-menu">
+                            <ul class="collapse sub-menu" id="email" data-parent="#sidebar-menu">
 
                                 <li>
-                                    <a class="sidenav-item-link" href="@Url.Action("Nuevo", "Home")">
+                                    <a class="sidenav-item-link" href="@Url.Action("Create", "Seat")">
                                         <span class="nav-text">Crear</span>
 
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="sidenav-item-link" href="@Url.Action("Editar", "Home")">
-                                        <span class="nav-text">Editar</span>
+                                    <a class="sidenav-item-link" href="@Url.Action("List", "Seat")">
+                                        <span class="nav-text">Listar</span>
 
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a class="sidenav-item-link" href="@Url.Action("Eliminar", "Home")">
-                                        <span class="nav-text">Eliminar</span>
+                            </ul>
 
-                                    </a>
-                                </li>
-                </div>
-                </ul>
-                </li>
-
-                <li>
-                    <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
-                        <i class="mdi mdi-folder-outline"></i>
-                        <span class="nav-text">Reportes</span>
-                    </a>
-                </li>
-
-
-
-                <li>
-                    <a class="sidenav-item-link" href="@Url.Action("Cuentas", "Home")">
-                        <i class="mdi mdi-file-multiple"></i>
-                        <span class="nav-text">Catálogo De Cuentas</span>
-                    </a>
-                </li>
-
-
-
-
-            </div>
-
-            <div class="sidebar-footer">
-                <div class="sidebar-footer-content">
-                </div>
-            </div>
-    </div>
-    </aside>
-
-
-
-    <!-- ====================================
-    ——— PAGE WRAPPER
-    ===================================== -->
-    <div class="page-wrapper">
-
-        <!-- Header -->
-        <header class="main-header" id="header">
-            <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
-                <!-- Sidebar toggle button -->
-                <button id="sidebar-toggler" class="sidebar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                </button>
-
-                <span class="page-title">Colaboradores</span>
-
-                <div class="navbar-right ">
-
-                    <!-- search form -->
-
-                    <form action="index.html" method="get">
-                        <div class="input-group input-group-sm" id="input-group-search">
-
-                            <div class="input-group-append">
-                            </div>
-
-                    </form>
-                    <ul class="dropdown-menu dropdown-menu-search">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Morbi leo risus</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Dapibus ac facilisis in</a>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
+                                <i class="mdi mdi-folder-outline"></i>
+                                <span class="nav-text">Reportes</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Porta ac consectetur ac</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Vestibulum at eros</a>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Account", "Catalog")">
+                                <i class="mdi mdi-file-multiple"></i>
+                                <span class="nav-text">Catálogo De Cuentas</span>
+                            </a>
                         </li>
 
                     </ul>
 
                 </div>
 
-                <ul class="nav navbar-nav">
-
-                    <!-- User Account -->
-
-                    <li class="dropdown-footer">
-                        <a class="dropdown-link-item" href="@Url.Action("Index", "Home")"> <i class="mdi mdi-logout"></i> Salir </a>
-                    </li>
-                </ul>
-                </li>
-                </ul>
-            </nav>
-        </header>
-
+                <div class="sidebar-footer">
+                    <div class="sidebar-footer-content">
+                    </div>
+                </div>
+            </div>
+        </aside>
 
 
 
         <!-- ====================================
-        ——— CONTENT WRAPPER
+        ——— PAGE WRAPPER
         ===================================== -->
-        <!-- Cuentas -->
-        <div class="card card-default">
-            <div class="card-header">
-                <h2>Colaboradores</h2>
+        <div class="page-wrapper">
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-contact">
-                    Agregar Colaborador
-                </button>
+            <!-- Header -->
+            <header class="main-header" id="header">
+                <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+                    <!-- Sidebar toggle button -->
+                    <button id="sidebar-toggler" class="sidebar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
 
-            </div>
-            <div class="card-body">
+                    <span class="page-title">Colaboradores</span>
 
-                <table id="productsTable" class="table table-hover table-product" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Usuario</th>
-                            <th>Correo Electrónico</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Catalina</td>
-                            <td>Blanco Rojas</td>
-                            <td>cblanco33</td>
-                            <td>cblanco33@example.com</td>
-                            <td>
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                    </a>
+                    <div class="navbar-right ">
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#modal-edit-contact" href="#">Editar</a>
+                        <!-- search form -->
 
-                                        <a class="dropdown-item" href="#">Eliminar</a>
-                                    </div>
+                        <form action="index.html" method="get">
+                            <div class="input-group input-group-sm" id="input-group-search">
+
+                                <div class="input-group-append">
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </form>
+                        <ul class="dropdown-menu dropdown-menu-search">
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Morbi leo risus</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Dapibus ac facilisis in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Porta ac consectetur ac</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Vestibulum at eros</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account -->
+
+                        <li class="dropdown-footer">
+                            <a class="dropdown-link-item" href="@Url.Action("Index", "Home")"> <i class="mdi mdi-logout"></i> Salir </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </header>
+
+            <!-- ====================================
+            ——— CONTENT WRAPPER
+            ===================================== -->
+
+            <div class="content-wrapper">
+                <div>
+                    <div class="card card-default">
+                        <div class="card-header align-items-center px-3 px-md-5">
+                            <h2>Colaboradores</h2>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-contact">
+                                Agregar Colaborador
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body px-3 px-md-5">
+                    <div class="row" id="employee-cards">
+                        <!-- Las tarjetas se cargarán aquí dinámicamente -->
+                    </div>
+                </div>
             </div>
-            <!-- Contact Modal -->
-            <div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
+
+            <!-- Modal para mostrar la información del Colaborador -->
+            <div class="modal fade" id="modal-contact-new" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header justify-content-end border-bottom-0">
                             <button type="button" class="btn-edit-icon" data-dismiss="modal" aria-label="Close">
-                                <i class="mdi mdi-pencil"></i>
                             </button>
 
-                            <div class="dropdown">
-                                <button class="btn-dots-icon" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </button>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                                </div>
-                            </div>
 
                             <button type="button" class="btn-close-icon" data-dismiss="modal" aria-label="Close">
                                 <i class="mdi mdi-close"></i>
@@ -317,31 +250,14 @@
                                 <div class="col-md-6">
                                     <div class="profile-content-left px-4">
                                         <div class="card text-center px-0 border-0">
-                                            <div class="card-img mx-auto">
-                                                <img class="rounded-circle" src="@Url.Content("~/images/user/u6.jpg")" alt="user image">
-                                            </div>
 
                                             <div class="card-body">
-                                                <h4 class="py-2">Albrecht Straub</h4>
-                                                <p>Albrecht.straub@gmail.com</p>
-                                                <a class="btn btn-primary btn-pill btn-lg my-4" href="javascript:void(0)">Follow</a>
-                                            </div>
-                                        </div>
+                                                <h4 class="py-2" id="employee-name-new"></h4>
+                                                <button type="button" class="btn btn-smoke btn-pill btn-delete-new" data-dismiss="modal" data-employee-id="">
+                                                    Eliminar
+                                                </button>
 
-                                        <div class="d-flex justify-content-between ">
-                                            <div class="text-center pb-4">
-                                                <h6 class="pb-2">1503</h6>
-                                                <p>Friends</p>
-                                            </div>
 
-                                            <div class="text-center pb-4">
-                                                <h6 class="pb-2">2905</h6>
-                                                <p>Followers</p>
-                                            </div>
-
-                                            <div class="text-center pb-4">
-                                                <h6 class="pb-2">1200</h6>
-                                                <p>Following</p>
                                             </div>
                                         </div>
                                     </div>
@@ -349,15 +265,20 @@
 
                                 <div class="col-md-6">
                                     <div class="contact-info px-4">
-                                        <h4 class="mb-1">Contact Details</h4>
-                                        <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
-                                        <p>Albrecht.straub@gmail.com</p>
-                                        <p class="text-dark font-weight-medium pt-4 mb-2">Phone Number</p>
-                                        <p>+99 9539 2641 31</p>
-                                        <p class="text-dark font-weight-medium pt-4 mb-2">Birthday</p>
-                                        <p>Nov 15, 1990</p>
-                                        <p class="text-dark font-weight-medium pt-4 mb-2">Event</p>
-                                        <p>Lorem, ipsum dolor</p>
+                                        <h4 class="mb-1">Detalles colaborador</h4>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">Nombre</p>
+                                        <p id="employee-first-name-new"></p>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">Apellidos</p>
+                                        <p id="employee-last-name-new"></p>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">Usuario</p>
+                                        <p id="employee-username-new"></p>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">Correo eletrónico</p>
+                                        <p id="employee-email-address-new"></p>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">Contraseña</p>
+                                        <p id="employee-password-new"></p>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">ID</p>
+                                        <p id="employee-id-new"></p>
+
                                     </div>
                                 </div>
                             </div>
@@ -366,64 +287,63 @@
                 </div>
             </div>
 
-            <!-- Add Cuenta Button  -->
-            <div class="modal fade" id="modal-add-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                 aria-hidden="true">
+
+            <!-- Add Contact Button  -->
+            <div class="modal fade" id="modal-add-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
-                        <form>
+                        <form id="addemployeeForm">
                             <div class="modal-header px-4">
                                 <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo Colaborador</h5>
                             </div>
                             <div class="modal-body px-4">
-
                                 <div class="row mb-2">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="firstName">Nombre</label>
-                                            <input type="text" class="form-control" id="firstName" value="">
+                                            <input type="text" class="form-control" id="employeeName" name="employeeName" value="">
                                         </div>
                                     </div>
-
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="lastName">Apellidos</label>
-                                            <input type="text" class="form-control" id="lastName" value="">
+                                            <input type="text" class="form-control" id="employeeLastName" name="employeeLastName" value="">
                                         </div>
                                     </div>
-
-
-
                                     <div class="col-lg-6">
                                         <div class="form-group mb-4">
-                                            <label for="Birthday">Usuario</label>
-                                            <input type="text" class="form-control" id="Birthday" value="">
+                                            <label for="user">Usuario</label>
+                                            <input type="text" class="form-control" id="employeeUsername" name="employeeUsername" value="">
                                         </div>
                                     </div>
-
-
                                     <div class="col-lg-6">
                                         <div class="form-group mb-4">
-                                            <label for="Birthday">Correo Electrónico</label>
-                                            <input type="text" class="form-control" id="Birthday" value="">
+                                            <label for="email">Correo electrónico</label>
+                                            <input type="text" class="form-control" id="emailAddress" name="emailAddress" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label for="password">Contraseña</label>
+                                            <input type="text" class="form-control" id="password" name="password" value="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer px-4">
                                 <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary btn-pill">Agregar</button>
+                                <button type="button" class="btn btn-primary btn-pill" data-dismiss="modal" onclick="addemployee()">Agregar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <!----Editar Cuenta----->
-            <div class="modal fade" id="modal-edit-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                 aria-hidden="true">
+
+            <!-- Modal de edición -->
+            <div class="modal fade" id="modal-edit-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
-                        <form>
+                        <form id="edit-employee-form">
                             <div class="modal-header px-4">
                                 <h5 class="modal-title" id="exampleModalCenterTitle">Editar Colaborador</h5>
                             </div>
@@ -431,92 +351,300 @@
                                 <div class="row mb-2">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="firstName">Nombre</label>
-                                            <input type="text" class="form-control" id="firstName" value="">
+                                            <label for="edit-employeeName">Nombre</label>
+                                            <input type="text" class="form-control" id="edit-employeeName">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="lastName">Apellidos</label>
-                                            <input type="text" class="form-control" id="lastName" value="">
+                                            <label for="edit-employeeAddress">Ubicación</label>
+                                            <input type="text" class="form-control" id="edit-employeeAddress">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group mb-4">
-                                            <label for="email">Usuario</label>
-                                            <input type="email" class="form-control" id="email" value="">
+                                            <label for="edit-EmailAddress">Correo Electrónico</label>
+                                            <input type="email" class="form-control" id="edit-EmailAddress">
                                         </div>
                                     </div>
 
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label for="edit-PhoneNumber">Número de teléfono</label>
+                                            <input type="number" class="form-control" id="edit-PhoneNumber">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer px-4">
                                 <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary btn-pill">Guardar</button>
+                                <button type="button" class="btn btn-primary btn-pill" id="save-edit">Guardar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+
+            <!-- Footer -->
+            <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy; <span id="copy-year"></span> Copyright RG Advisory Group
+                    </p>
+                </div>
+            </footer>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer mt-auto">
-            <div class="copyright bg-white">
-                <p>
-                    &copy; <span id="copy-year"></span> Copyright RG Advisory Group
-                </p>
-            </div>
-            <script>
-                var d = new Date();
-                var year = d.getFullYear();
-                document.getElementById("copy-year").innerHTML = year;
-            </script>
-        </footer>
-    </div>
 
-    <script src="~/plugins/jquery/jquery.min.js"></script>
-    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/plugins/simplebar/simplebar.min.js"></script>
-    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+        <!-- Script -->
+        <script>
+            document.addEventListener('click', function (event) {
+                // Verificar si el clic provino de una tarjeta de colaborador
+                if (event.target.dataset.employeeId) {
+                    const employeeId = event.target.dataset.employeeId;
+                    const employeeName = event.target.querySelector('.text-dark').textContent;
+                    const employeeLastName = event.target.querySelector('.mdi-map + span').textContent;
+                    const emailAddress = event.target.querySelector('.mdi-email + span').textContent;
+                    const username = event.target.querySelector('.mdi-user + span').textContent;
+                    const password = event.target.querySelector('.mdi-user + span').textContent;
 
-    <script src="~/plugins/apexcharts/apexcharts.js"></script>
+                    // Llenar los elementos del nuevo modal "modal-contact-new" con los datos del Colaborador
+                    document.getElementById('employee-first-name-new').textContent = employeeName;
+                    document.getElementById('employee-last-name-new').textContent = employeeLastName;
+                    document.getElementById('employee-user-name-new').textContent = employeeUsername;
+                    document.getElementById('employee-email-address-new').textContent = emailAddress;
+                    document.getElementById('employee-password-new').textContent = password;
+                    document.getElementById('employee-id-new').textContent = employeeId;
 
-    <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+                    // Establecer el atributo data-employee-id en el botón Eliminar para que pueda accederse más adelante
+                    document.querySelector('.btn-delete-new').setAttribute('data-employee-id', employeeId);
 
-    <script src="~/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="~/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
-    <script src="~/plugins/jvectormap/jquery-jvectormap-us-aea.js"></script>
+                    // Mostrar el nuevo modal "modal-contact-new"
+                    $('#modal-contact-new').modal('show');
+                }
+            });
 
-    <script src="~/plugins/daterangepicker/moment.min.js"></script>
-    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
 
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+            function deleteemployee(employeeId) {
+                // Realiza una solicitud HTTP DELETE a la API para eliminar el colaborador
+                $.ajax({
+                    url: `https://proyectorg-api.azurewebsites.net/api/Employee`,
+                    type: 'DELETE',
+                    success: function (data) {
+                        // Colaborador eliminado exitosamente, puedes realizar alguna acción adicional si es necesario
+                        console.log(`Colaborador con ID ${employeeId} eliminado.`);
+                        // Recarga la página para actualizar la lista de Colaboradors (puedes hacerlo de manera más eficiente actualizando la vista sin recargar)
+                        location.reload();
+                    },
+                    error: function (error) {
+                        // Ocurrió un error al eliminar el Colaborador
+                        console.error(`Error al eliminar el Colaborador con ID ${employeeId}: ${error.responseText}`);
+                    }
+                });
+            }
 
-    <script src="~/js/mono.js"></script>
-    <script src="~/js/chart.js"></script>
-    <script src="~/js/map.js"></script>
-    <script src="~/js/custom.js"></script>
+            $(document).ready(function () {
+                $('#modal-contact-new .btn-delete-new').click(function () {
+                    var employeeId = $('#modal-contact-new #employee-id-new').text();
+                    deleteemployee(employeeId);
+                });
+            });
+        </script>
 
-    <script>
-        // jQuery(document).ready(function () {
-        //     jQuery('input[name="dateRange"]').daterangepicker({
-        //         autoUpdateInput: false,
-        //         singleDatePicker: true,
-        //         locale: {
-        //             cancelLabel: 'Clear'
-        //         }
-        //     });
-        //     jQuery('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
-        //         jQuery(this).val(picker.startDate.format('MM/DD/YYYY'));
-        //     });
-        //     jQuery('input[name="dateRange"]').on('cancel.daterangepicker', function (ev, picker) {
-        //         jQuery(this).val('');
-        //     });
-        // });
-    </script>
+        <script>
+            function addemployee() {
+                // Obtener los valores de los campos
+                var employeeName = $("#employeeName").val();
+                var employeeAddress = $("#employeeAddress").val();
+                var emailAddress = $("#EmailAddress").val();
+                var phoneNumber = $("#PhoneNumber").val();
+
+                // Verificar si algún campo está vacío
+                if (!employeeName || !employeeAddress || !emailAddress || !phoneNumber) {
+                    // Mostrar un mensaje de error si algún campo está vacío
+                    alert("Por favor, complete todos los campos.");
+                    return; // Evita el envío del formulario
+                }
+
+                // Expresión regular para validar un número de teléfono de 8 dígitos
+                var phoneRegex = /^\d{8}$/;
+
+                // Expresión regular para validar que el nombre no contenga números
+                var nameRegex = /^[A-Za-z ]+$/;
+
+                // Validar el formato del correo electrónico
+                //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+                if (!employeeName.match(nameRegex)) {
+                    alert('El nombre no puede contener números ni caracteres especiales.');
+                    return;
+                }
+
+                if (!phoneNumber.match(phoneRegex)) {
+                    alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
+                    return;
+                }
+
+                if (!employeeemailAddress.match(emailRegex)) {
+                    alert('El correo debe cumplir con el formato.');
+                    return;
+                }
+
+                // Si todas las validaciones pasan, enviar los datos al servidor
+                var formData = {
+                    idType: 1,
+                    employeeName: employeeName,
+                    employeeAddress: employeeAddress,
+                    emailAddress: emailAddress,
+                    phoneNumber: phoneNumber
+                };
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "https://proyectorg-api.azurewebsites.net/api/Employee",
+                    data: JSON.stringify(formData),
+                    dataType: "json",
+                    success: function (data) {
+                        // Procesar la respuesta si es necesario
+                        // Puedes mostrar un mensaje de éxito o actualizar la lista de Colaboradors, por ejemplo
+                        $("#employeeName").val("");
+                        $("#employeeAddress").val("");
+                        $("#EmailAddress").val("");
+                        $("#PhoneNumber").val("");
+                        location.reload();
+                    },
+                    error: function (error) {
+                        // Manejar errores si es necesario
+                        console.log(error);
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            $(document).on('click', 'button[data-employee-id]', function () {
+                // Obtén el ID del Colaborador desde el atributo de datos del botón
+                const employeeId = parseInt($(this).data('employee-id'));
+
+                // A continuación, puedes llenar los campos del modal de edición
+                const employeeName = $(this).closest('.card').find('h5').text();
+                const employeeAddress = $(this).closest('.card').find('.mdi-map + span').text();
+                const emailAddress = $(this).closest('.card').find('.mdi-email + span').text();
+                const phoneNumber = $(this).closest('.card').find('.mdi-phone + span').text();
+
+                // Asignar los valores obtenidos a los campos del modal
+                $('#edit-employeeName').val(employeeName);
+                $('#edit-employeeAddress').val(employeeAddress);
+                $('#edit-EmailAddress').val(emailAddress);
+                $('#edit-PhoneNumber').val(phoneNumber);
+
+                // Asignar el valor del Colaborador ID al atributo data para uso posterior
+                $('#save-edit').attr('data-employee-id', employeeId);
+
+                // Mostrar el modal de edición
+                $('#modal-edit-contact').modal('show');
+            });
+
+            // Manejar el evento "Guardar" en el modal de edición
+            $('#save-edit').click(function () {
+                // Obtener el ID del Colaborador del atributo data y convertirlo a número entero
+                const employeeId = parseInt($('#save-edit').data('employee-id'), 10);
+
+                // Obtener los valores de los campos de edición
+                var editedemployeeName = $('#edit-employeeName').val();
+                var editedemployeeAddress = $('#edit-employeeAddress').val();
+                var editedEmailAddress = $('#edit-EmailAddress').val();
+                var editedPhoneNumber = $('#edit-PhoneNumber').val();
+
+                // Expresión regular para validar un número de teléfono de 8 dígitos
+                var phoneRegex = /^\d{8}$/;
+
+                // Expresión regular para validar que el nombre no contenga números
+                var nameRegex = /^[A-Za-z ]+$/;
+
+                // Validar el formato del correo electrónico
+                //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+
+                if (!editedemployeeName.match(nameRegex)) {
+                    alert('El nombre no puede contener números ni caracteres especiales.');
+                    return;
+                }
+
+                if (!editedPhoneNumber.match(phoneRegex)) {
+                    alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
+                    return;
+                }
+
+                if (!employeeemailAddress.match(emailRegex)) {
+                    alert('El correo debe cumplir con el formato.');
+                    return;
+                }
+
+                // Crea un objeto con los datos editados del Colaborador
+                var editedemployee = {
+                    employeeID: employeeId, // Ajusta el nombre de la propiedad según tu API
+                    idType: 1,
+                    employeeName: editedemployeeName,
+                    employeeAddress: editedemployeeAddress,
+                    emailAddress: editedEmailAddress,
+                    phoneNumber: editedPhoneNumber
+                };
+
+                // Realiza una solicitud PUT o PATCH a la API para guardar los cambios
+                $.ajax({
+                    url: `https://proyectorg-api.azurewebsites.net/api/Employee`,
+                    type: 'PUT',
+                    contentType: 'application/json', // Configura el tipo de contenido como JSON
+                    data: JSON.stringify(editedemployee),
+                    dataType: "json",
+                    success: function (data) {
+                        // Colaborador editado exitosamente
+                        alert('Colaborador editado con éxito.');
+                        // Cierra el modal de edición
+                        $('#modal-edit-contact').modal('hide');
+                        location.reload();
+                    },
+                    error: function (error) {
+                        // Ocurrió un error al editar el Colaborador
+                        console.error('Error al editar el Colaborador:', error);
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            var d = new Date();
+            var year = d.getFullYear();
+            document.getElementById("copy-year").innerHTML = year;
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="~/plugins/jquery/jquery.min.js"></script>
+        <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/plugins/simplebar/simplebar.min.js"></script>
+        <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+
+
+        <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+
+
+        <script src="~/plugins/daterangepicker/moment.min.js"></script>
+        <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+        <script src="~/js/mono.js"></script>
+        <script src="~/js/chart.js"></script>
+        <script src="~/js/map.js"></script>
+        <script src="~/js/custom.js"></script>
+        <script src="~/js/site.js"></script>
+
+        <script src="~/scripts/employee.js"></script>
 
 </body>
 </html>

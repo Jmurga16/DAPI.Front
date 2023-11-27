@@ -11566,37 +11566,14 @@ button {
 .page-wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
 }
 
 .content-wrapper {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  width: 100%;
-}
-
-/* Content */
-.content {
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  width: 100%;
-}
-@media (min-width: 992px) {
-  .content {
-    margin-right: auto;
-    margin-left: auto;
-    padding-top: 1.9rem;
-    padding-left: 1.875rem;
-    padding-right: 1.875rem;
-  }
-}
-@media (min-width: 1200px) {
-  .content {
-    padding-top: 2.5rem;
-    padding-bottom: 0.625rem;
-  }
+  /*width: 100vw;*/
 }
 
 /* ===== BUTTONS ===== */
@@ -17448,3 +17425,5 @@ html[dir=rtl] .sidebar li > a .caret:before {
   font-weight: 500;
 }
 /*# sourceMappingURL=style.css.map */
+
+

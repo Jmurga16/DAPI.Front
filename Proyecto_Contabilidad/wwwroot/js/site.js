@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
     // Hacer una solicitud HTTP GET a tu API para obtener los datos de los clientes
-    /*fetch('https://localhost:7259/api/Customer')
+    /*fetch('https://proyectorg-api.azurewebsites.net/')
         .then(response => response.json())
         .then(data => {
             const customerCardsContainer = document.getElementById('customer-cards');
@@ -69,7 +69,7 @@ $(document).ready(function () {
         function deleteCustomer(customerId) {
             // Realizar una solicitud DELETE a tu API para eliminar el cliente
             $.ajax({
-                url: `https://localhost:7259/api/Customer/${customerId}`,
+                url: `https://proyectorg-api.azurewebsites.net/{customerId}`,
                 type: 'DELETE',
                 success: function (result) {
                     // La eliminación fue exitosa, puedes realizar acciones adicionales si es necesario
@@ -94,5 +94,6 @@ $(document).ready(function () {
             }
         });
     });
-   */ 
+    */
 });
+

@@ -78,10 +78,8 @@
                 <div class="sidebar-left" data-simplebar style="height: 100%;">
                     <!-- sidebar menu -->
                     <ul class="nav sidebar-inner" id="sidebar-menu">
-
-
-                        <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Asientos", "Home")">
+                   <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Privacy", "Home")">
                                 <i class="mdi mdi-home-circle"></i>
                                 <span class="nav-text">Principal</span>
                             </a>
@@ -94,7 +92,6 @@
                             </a>
                         </li>
 
-
                         <li>
                             <a class="sidenav-item-link" href="@Url.Action("Metricas", "Home")">
                                 <i class="mdi mdi-chart-line"></i>
@@ -106,8 +103,6 @@
                             Funciones
                         </li>
 
-
-
                         <li class="active">
                             <a class="sidenav-item-link" href="@Url.Action("Cliente", "Home")">
                                 <i class="mdi mdi-account"></i>
@@ -115,62 +110,51 @@
                             </a>
                         </li>
 
-
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
-                               aria-expanded="false" aria-controls="emai>
-                                <i class="mdi mdi-email"></i>
+                               aria-expanded="false" aria-controls="email">
+
                                 <i class="mdi mdi-square-edit-outline"></i>
                                 <span class="nav-text">Asiento</span><b class="caret"></b>
                             </a>
 
-                            <ul class="collapse" id="email"
-                                data-parent="#sidebar-menu">
-                               <div class="sub-menu">
-                                    <li>
-                                        <a class="sidenav-item-link" href="@Url.Action("Nuevo", "Home")">
-                                            <span class="nav-text">Crear</span>
+                            <ul class="collapse sub-menu" id="email" data-parent="#sidebar-menu">
 
-                                        </a>
-                                    </li>
+                                <li>
+                                    <a class="sidenav-item-link" href="@Url.Action("Create", "Seat")">
+                                        <span class="nav-text">Crear</span>
 
-                                    <li>
-                                        <a class="sidenav-item-link" href="@Url.Action("Editar", "Home")">
-                                            <span class="nav-text">Editar</span>
+                                    </a>
+                                </li>
 
-                                        </a>
-                                    </li>
+                                <li>
+                                    <a class="sidenav-item-link" href="@Url.Action("List", "Seat")">
+                                        <span class="nav-text">Listar</span>
 
-                                    <li>
-                                        <a class="sidenav-item-link" href="@Url.Action("Eliminar", "Home")">
-                                            <span class="nav-text">Eliminar</span>
-                                        </a>
-                                    </li>
-                                </div>
+                                    </a>
+                                </li>
+
                             </ul>
+
                         </li>
-                   </li>
 
-                <li>
-                    <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
-                        <i class="mdi mdi-folder-outline"></i>
-                        <span class="nav-text">Reportes</span>
-                    </a>
-                </li>
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
+                                <i class="mdi mdi-folder-outline"></i>
+                                <span class="nav-text">Reportes</span>
+                            </a>
+                        </li>
 
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Account", "Catalog")">
+                                <i class="mdi mdi-file-multiple"></i>
+                                <span class="nav-text">Catálogo De Cuentas</span>
+                            </a>
+                        </li>
 
-                
-                <li>
-                    <a class="sidenav-item-link" href="@Url.Action("Cuentas", "Home")">
-                        <i class="mdi mdi-file-multiple"></i>
-                        <span class="nav-text">Catálogo De Cuentas</span>
-                    </a>
-                </li>
+                    </ul>
 
-
-
-
-            </div>
+                </div>
 
             <div class="sidebar-footer">
                 <div class="sidebar-footer-content">
@@ -247,7 +231,7 @@
         ===================================== -->
 
         <div class="content-wrapper">
-    <div class="content">
+    <div>
         <div class="card card-default">
             <div class="card-header align-items-center px-3 px-md-5">
                 <h2>Clientes</h2>
@@ -265,7 +249,7 @@
 </div>
 
 <script>
-    fetch('https://localhost:7259/api/Customer')
+            fetch('https://proyectorg-api.azurewebsites.net/api/Customer')
         .then(response => response.json())
         .then(data => {
             const customerCardsContainer = document.getElementById('customer-cards');
@@ -322,23 +306,12 @@
         <div class="modal-content">
             <div class="modal-header justify-content-end border-bottom-0">
                 <button type="button" class="btn-edit-icon" data-dismiss="modal" aria-label="Close">
-                    <i class="mdi mdi-pencil"></i>
+                    
                 </button>
 
-                <div class="dropdown">
-                    <button class="btn-dots-icon" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="mdi mdi-dots-vertical"></i>
-                    </button>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                        <a class "dropdown-item" href="javascript:void(0)">Another action</a>
-                        <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                </div>
 
                 <button type="button" class="btn-close-icon" data-dismiss="modal" aria-label="Close">
-                    <i class="mdi mdi-close"></i>
+                    <i class="mdi mdi-close" href="@Url.Action("Cliente", "Home")"></i>
                 </button>
             </div>
 
@@ -347,9 +320,6 @@
                     <div class="col-md-6">
                         <div class="profile-content-left px-4">
                             <div class="card text-center px-0 border-0">
-                                <div class="card-img mx-auto">
-                                    <img class="rounded-circle" id="customer-profile-image-new" src="" alt="user image">
-                                </div>
 
                                 <div class="card-body">
                                     <h4 class="py-2" id="customer-name-new"></h4>
@@ -365,12 +335,12 @@
 
                     <div class="col-md-6">
                         <div class="contact-info px-4">
-                            <h4 class="mb-1">Contact Details</h4>
-                            <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
+                            <h4 class="mb-1">Detalles cliente</h4>
+                            <p class="text-dark font-weight-medium pt-4 mb-2">Correo electrónico</p>
                             <p id="customer-email-address-new"></p>
-                            <p class="text-dark font-weight-medium pt-4 mb-2">Phone Number</p>
+                            <p class="text-dark font-weight-medium pt-4 mb-2">Número de teléfono</p>
                             <p id="customer-phone-number-new"></p>
-                            <p class="text-dark font-weight-medium pt-4 mb-2">Customer Address</p>
+                            <p class="text-dark font-weight-medium pt-4 mb-2">Dirección</p>
                             <p id="customer-address-new"></p>
                             <p class="text-dark font-weight-medium pt-4 mb-2">ID</p>
                             <p id="customer-id-new"></p>
@@ -416,7 +386,7 @@
         function deleteCustomer(customerId) {
     // Realiza una solicitud HTTP DELETE a la API para eliminar el cliente
     $.ajax({
-        url: `https://localhost:7259/api/Customer/${customerId}`,
+                    url: `https://proyectorg-api.azurewebsites.net/api/Customer`,
         type: 'DELETE',
         success: function (data) {
             // Cliente eliminado exitosamente, puedes realizar alguna acción adicional si es necesario
@@ -505,7 +475,7 @@ $(document).ready(function () {
     var nameRegex = /^[A-Za-z ]+$/;
 
     // Validar el formato del correo electrónico
-
+      //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; 
 
     if (!customerName.match(nameRegex)) {
         alert('El nombre no puede contener números ni caracteres especiales.');
@@ -516,6 +486,11 @@ $(document).ready(function () {
         alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
         return;
     }
+
+                if (!employeeemailAddress.match(emailRegex)) {
+                    alert('El correo debe cumplir con el formato.');
+                    return;
+                }
 
     // Si todas las validaciones pasan, enviar los datos al servidor
     var formData = {
@@ -529,7 +504,7 @@ $(document).ready(function () {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://localhost:7259/api/Customer",
+                    url: "https://proyectorg-api.azurewebsites.net/api/Customer",
         data: JSON.stringify(formData),
         dataType: "json",
         success: function (data) {
@@ -642,6 +617,7 @@ $('#save-edit').click(function () {
     var nameRegex = /^[A-Za-z ]+$/;
 
     // Validar el formato del correo electrónico
+  //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
    
 
     if (!editedCustomerName.match(nameRegex)) {
@@ -653,6 +629,11 @@ $('#save-edit').click(function () {
         alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
         return;
     }
+
+                if (!employeeemailAddress.match(emailRegex)) {
+                    alert('El correo debe cumplir con el formato.');
+                    return;
+                }
 
     // Crea un objeto con los datos editados del cliente
     var editedCustomer = {
@@ -666,7 +647,7 @@ $('#save-edit').click(function () {
 
     // Realiza una solicitud PUT o PATCH a la API para guardar los cambios
     $.ajax({
-        url: `https://localhost:7259/api/Customer`,
+                    url: `https://proyectorg-api.azurewebsites.net/api/Customer`,
         type: 'PUT',
         contentType: 'application/json', // Configura el tipo de contenido como JSON
         data: JSON.stringify(editedCustomer),

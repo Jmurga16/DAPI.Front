@@ -61,7 +61,7 @@
                     <ul class="nav sidebar-inner" id="sidebar-menu">
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Asientos", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("Privacy", "Home")">
                                 <i class="mdi mdi-home-circle"></i>
                                 <span class="nav-text">Principal</span>
                             </a>
@@ -167,25 +167,12 @@
                     <ul class="nav navbar-nav">
 
                         <!-- User Account -->
-                        <li class="dropdown user-menu">
-                            <button class="dropdown-toggle nav-link" data-toggle="dropdown">
-
-                                <span class="d-none d-lg-inline-block">Naya </span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-                                    <a class="dropdown-link-item" href="@Url.Action("Perfil", "Home")">
-                                        <i class="mdi mdi-account-outline"></i>
-                                        <span class="nav-text">Mi Perfil</span>
-                                    </a>
-                                </li>
+                        
 
                                 <li class="dropdown-footer">
                                     <a class="dropdown-link-item" href="@Url.Action("Index", "Home")"> <i class="mdi mdi-logout"></i> Salir </a>
                                 </li>
-                            </ul>
-                        </li>
-                    </ul>
+                           
                 </nav>
             </header>
 
@@ -250,7 +237,13 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="typeAccount">Tipo de cuenta</label>
-                                                <input type="text" class="form-control" id="typeAccount" value="">
+                                                <select class="form-control" id="typeAccount">
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Gasto</option>
+                                                    <option value="3">Ingreso</option>
+                                                    <option value="4">Pasivo</option>
+                                                    <option value="5">Patrimonio</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -259,8 +252,8 @@
                                                 <label for="conversion">Conversión</label>
                                                 <select class="form-control" id="conversion">
                                                     <option value="0">No Convierte</option>
-                                                    <option value="1">De Colón a Dolar</option>
-                                                    <option value="2">De Dólar a Colón</option>
+                                                    <option value="1">De Colon a Dolar</option>
+                                                    <option value="2">De Dolar a Colon</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -306,7 +299,13 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="typeAccount">Tipo de cuenta</label>
-                                                <input type="text" class="form-control" id="typeAccount" value="">
+                                                <select class="form-control" id="typeAccount">
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Gasto</option>
+                                                    <option value="3">Ingreso</option>
+                                                    <option value="4">Pasivo</option>
+                                                    <option value="5">Patrimonio</option>
+                                                </select>
                                             </div>
                                         </div>
 

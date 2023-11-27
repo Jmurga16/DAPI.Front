@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadDataFromAPI() {
-
     fetch(base_url + '/Seat')
         .then(response => response.json())
         .then(data => {
@@ -11,16 +10,10 @@ function loadDataFromAPI() {
 
             data.forEach(item => {
 
-                date_seat = new Date(item.datE_SEAT)
-
-                let year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date_seat);
-                let month = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(date_seat);
-                let day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date_seat);
-
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                                             <td>${item.id}</td>
-                                            <td>${day}/${month}/${year}</td>
+                                            <td>${item.date_seat}</td>
                                             <td>${item.reference}</td>                                          
                                             <td>
                                                 <div class="dropdown">

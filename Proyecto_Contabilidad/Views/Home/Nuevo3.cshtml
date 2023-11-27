@@ -80,12 +80,11 @@
                     <ul class="nav sidebar-inner" id="sidebar-menu">
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Asientos", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("Privacy", "Home")">
                                 <i class="mdi mdi-home-circle"></i>
                                 <span class="nav-text">Principal</span>
                             </a>
                         </li>
-
 
                         <li>
                             <a class="sidenav-item-link" href="@Url.Action("Colaboradores", "Home")">
@@ -93,7 +92,6 @@
                                 <span class="nav-text">Colaboradores</span>
                             </a>
                         </li>
-
 
                         <li>
                             <a class="sidenav-item-link" href="@Url.Action("Metricas", "Home")">
@@ -106,8 +104,6 @@
                             Funciones
                         </li>
 
-
-
                         <li>
                             <a class="sidenav-item-link" href="@Url.Action("Cliente", "Home")">
                                 <i class="mdi mdi-account"></i>
@@ -115,65 +111,51 @@
                             </a>
                         </li>
 
-
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
-                               aria-expanded="false" aria-controls="emai>
-                                <i class="mdi mdi-email"></i>
+                               aria-expanded="false" aria-controls="email">
+
                                 <i class="mdi mdi-square-edit-outline"></i>
                                 <span class="nav-text">Asiento</span><b class="caret"></b>
                             </a>
 
-                            <ul class="collapse" id="email"
-                                data-parent="#sidebar-menu">
-                                <div class="sub-menu">
-
+                            <ul class="collapse sub-menu" id="email" data-parent="#sidebar-menu">
 
                                 <li>
-                                    <a class="sidenav-item-link" href="@Url.Action("Nuevo", "Home")">
+                                    <a class="sidenav-item-link" href="@Url.Action("Create", "Seat")">
                                         <span class="nav-text">Crear</span>
 
                                     </a>
                                 </li>
 
-                                <li class="active">
-                                    <a class="sidenav-item-link" href="@Url.Action("Editar", "Home")">
-                                        <span class="nav-text">Editar</span>
+                                <li>
+                                    <a class="sidenav-item-link" href="@Url.Action("List", "Seat")">
+                                        <span class="nav-text">Listar</span>
 
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a class="sidenav-item-link" href="@Url.Action("Eliminar", "Home")">
-                                        <span class="nav-text">Eliminar</span>
+                            </ul>
 
-                                    </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
+                                <i class="mdi mdi-folder-outline"></i>
+                                <span class="nav-text">Reportes</span>
+                            </a>
+                        </li>
+
+                        <li class="active">
+                            <a class="sidenav-item-link" href="@Url.Action("Account", "Catalog")">
+                                <i class="mdi mdi-file-multiple"></i>
+                                <span class="nav-text">Catálogo De Cuentas</span>
+                            </a>
+                        </li>
+
+                    </ul>
 
                 </div>
-                </ul>
-                </li>
-
-
-                <li>
-                    <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
-                        <i class="mdi mdi-folder-outline"></i>
-                        <span class="nav-text">Reportes</span>
-                    </a>
-                </li>
-
-
-
-                <li>
-                    <a class="sidenav-item-link" href="@Url.Action("Cuentas", "Home")">
-                        <i class="mdi mdi-file-multiple"></i>
-                        <span class="nav-text">Catálogo De Cuentas</span>
-                    </a>
-                </li>
-
-
-
-
-            </div>
 
             <div class="sidebar-footer">
                 <div class="sidebar-footer-content">
@@ -232,27 +214,12 @@
                 <ul class="nav navbar-nav">
 
                     <!-- User Account -->
-                    <li class="dropdown user-menu">
-                        <button class="dropdown-toggle nav-link" data-toggle="dropdown">
-
-                            <span class="d-none d-lg-inline-block">Naya </span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li>
-                                <a class="dropdown-link-item" href="@Url.Action("Perfil", "Home")">
-                                    <i class="mdi mdi-account-outline"></i>
-                                    <span class="nav-text">Mi Perfil</span>
-                                </a>
-                            </li>
-
-
-
+                    
                             <li class="dropdown-footer">
                                 <a class="dropdown-link-item" href="@Url.Action("Index", "Home")"> <i class="mdi mdi-logout"></i> Salir </a>
                             </li>
                         </ul>
-                    </li>
-                </ul>
+                    
             </nav>
         </header>
 

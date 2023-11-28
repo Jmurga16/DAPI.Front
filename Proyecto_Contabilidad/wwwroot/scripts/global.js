@@ -2,6 +2,9 @@
 var url_front = 'http://localhost:5108/'
 var base_url = 'https://localhost:7259/api'
 
+var currentCustomerID = 0;
+var currentCustomerName = ""
+
 var listConversion = [
     { id: 0, name: "No Convierte" },
     { id: 1, name: "De Colón a Dolar" },

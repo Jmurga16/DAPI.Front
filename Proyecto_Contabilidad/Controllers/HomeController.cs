@@ -50,6 +50,11 @@ namespace Proyecto_Contabilidad.Controllers
             return View();
         }
 
+        public IActionResult Principal()
+        {
+            return View();
+        }
+
         public IActionResult Colaboradores()
         {
             return View();

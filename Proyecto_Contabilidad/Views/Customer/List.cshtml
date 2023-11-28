@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-name" content="mono" />
+
+    <title>Mono - Responsive Admin & Dashboard Template</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
+    <link href="~/plugins/material/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/plugins/simplebar/simplebar.css" rel="stylesheet" />
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href="~/plugins/nprogress/nprogress.css" rel="stylesheet" />
+
+    <link href="~/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/plugins/toaster/toastr.min.css" rel="stylesheet" />
+
+    <!-- MONO CSS -->
+    <link id="main-css-href" rel="stylesheet" href="~/css/style.css" />
+
+    <!-- FAVICON -->
+    <link href="~/images/favicon.png" rel="shortcut icon" />
+
+    <script src="~/plugins/nprogress/nprogress.js"></script>
+</head>
+
+
+<body class="navbar-fixed sidebar-fixed" id="body">
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+
+    <!-- ====================================
+    ——— WRAPPER
+    ===================================== -->
+    <div class="wrapper">
+
+
+        <!-- ====================================
+          ——— LEFT SIDEBAR WITH OUT FOOTER
+        ===================================== -->
+        <aside class="left-sidebar sidebar-dark" id="left-sidebar">
+            <div id="sidebar" class="sidebar sidebar-with-footer">
+                <!-- Aplication Brand -->
+                <div class="app-brand">
+                    <a href="@Url.Action("Privacy", "Home")">
+                        @* <img src="Images/Logo.png"> *@
+                        <span class="brand-name">RG Advisory Group</span>
+
+
+                    </a>
+                </div>
+                <!-- begin sidebar scrollbar -->
+                <div class="sidebar-left" data-simplebar style="height: 100%;">
+                    <!-- sidebar menu -->
+                    <ul class="nav sidebar-inner" id="sidebar-menu">
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Principal", "Home")">
+                                <i class="mdi mdi-home-circle"></i>
+                                <span class="nav-text">Principal</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("List", "Employee")">
+                                <i class="mdi mdi-briefcase-account-outline"></i>
+                                <span class="nav-text">Colaboradores</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Metricas", "Home")">
+                                <i class="mdi mdi-chart-line"></i>
+                                <span class="nav-text">Métricas</span>
+                            </a>
+                        </li>
+
+                        <li class="section-title">
+                            Funciones
+                        </li>
+
+                        <li class="active">
+                            <a class="sidenav-item-link" href="@Url.Action("List", "Customer")">
+                                <i class="mdi mdi-account"></i>
+                                <span class="nav-text">Clientes</span>
+                            </a>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
+                               aria-expanded="false" aria-controls="email">
+
+                                <i class="mdi mdi-square-edit-outline"></i>
+                                <span class="nav-text">Asiento</span><b class="caret"></b>
+                            </a>
+
+                            <ul class="collapse sub-menu" id="email" data-parent="#sidebar-menu">
+
+                                <li>
+                                    <a class="sidenav-item-link" href="@Url.Action("Create", "Seat")">
+                                        <span class="nav-text">Crear</span>
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="sidenav-item-link" href="@Url.Action("List", "Seat")">
+                                        <span class="nav-text">Listar</span>
+
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
+                                <i class="mdi mdi-folder-outline"></i>
+                                <span class="nav-text">Reportes</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Account", "Catalog")">
+                                <i class="mdi mdi-file-multiple"></i>
+                                <span class="nav-text">Catálogo De Cuentas</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="sidebar-footer">
+                    <div class="sidebar-footer-content">
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+
+
+        <!-- ====================================
+        ——— PAGE WRAPPER
+        ===================================== -->
+        <div class="page-wrapper">
+
+            <!-- Header -->
+            <header class="main-header" id="header">
+                <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+                    <!-- Sidebar toggle button -->
+                    <button id="sidebar-toggler" class="sidebar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+
+                    <span class="page-title">Clientes</span>
+
+                    <div class="navbar-right ">
+                    </div>
+
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account -->
+
+                        <li class="dropdown-footer">
+                            <a class="dropdown-link-item" href="@Url.Action("Index", "Home")"> <i class="mdi mdi-logout"></i> Salir </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </header>
+
+            <!-- ====================================
+            ——— CONTENT WRAPPER
+            ===================================== -->
+
+            <div class="content-wrapper">
+                <div>
+                    <div class="card card-default">
+                        <div class="card-header align-items-center px-3 px-md-5">
+                            <h2>Clientes</h2>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-contact">
+                                Agregar Cliente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body px-3 px-md-5">
+                    <div class="row" id="customer-cards">
+                        <!-- Las tarjetas se cargarán aquí dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal para mostrar la información del cliente -->
+            <div class="modal fade" id="modal-contact-new" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-end border-bottom-0">
+                            <button type="button" class="btn-edit-icon" data-dismiss="modal" aria-label="Close">
+                            </button>
+
+
+                            <button type="button" class="btn-close-icon" data-dismiss="modal" aria-label="Close">
+                                <i class="mdi mdi-close" href="@Url.Action("Cliente", "Home")"></i>
+                            </button>
+                        </div>
+
+                        <div class="modal-body pt-0">
+                            <div class="row no-gutters">
+                                <div class="col-md-6">
+                                    <div class="profile-content-left px-4">
+                                        <div class="card text-center px-0 border-0">
+
+                                            <div class="card-body">
+                                                <h4 class="py-2" id="customer-name-new"></h4>
+                                                <button type="button" class="btn btn-smoke btn-pill btn-delete-new" data-dismiss="modal" data-customer-id="">
+                                                    Eliminar
+                                                </button>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="contact-info px-4">
+                                        <h4 class="mb-1">Detalles cliente</h4>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">Correo electrónico</p>
+                                        <p id="customer-email-address-new"></p>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">Número de teléfono</p>
+                                        <p id="customer-phone-number-new"></p>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">Dirección</p>
+                                        <p id="customer-address-new"></p>
+                                        <p class="text-dark font-weight-medium pt-4 mb-2">ID</p>
+                                        <p id="customer-id-new"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Contact Button  -->
+            <div class="modal fade" id="modal-add-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <form id="addCustomerForm">
+                            <div class="modal-header px-4">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo Cliente</h5>
+                            </div>
+                            <div class="modal-body px-4">
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="firstName">Nombre</label>
+                                            <input type="text" class="form-control" id="CustomerName" name="CustomerName" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="lastName">Ubicación</label>
+                                            <input type="text" class="form-control" id="CustomerAddress" name="CustomerAddress" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label for="email">Correo Electrónico</label>
+                                            <input type="email" class="form-control" id="EmailAddress" name="EmailAddress" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label for="Birthday">Número de teléfono</label>
+                                            <input type="number" class="form-control" id="PhoneNumber" name="PhoneNumber" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer px-4">
+                                <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary btn-pill" data-dismiss="modal" onclick="addCustomer()">Agregar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de edición -->
+            <div class="modal fade" id="modal-edit-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <form id="edit-customer-form">
+                            <div class="modal-header px-4">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Editar Cliente</h5>
+                            </div>
+                            <div class="modal-body px-4">
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="edit-customerName">Nombre</label>
+                                            <input type="text" class="form-control" id="edit-customerName">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="edit-customerAddress">Ubicación</label>
+                                            <input type="text" class="form-control" id="edit-customerAddress">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label for="edit-EmailAddress">Correo Electrónico</label>
+                                            <input type="email" class="form-control" id="edit-EmailAddress">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label for="edit-PhoneNumber">Número de teléfono</label>
+                                            <input type="number" class="form-control" id="edit-PhoneNumber">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer px-4">
+                                <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary btn-pill" id="save-edit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy; <span id="copy-year"></span> Copyright RG Advisory Group
+                    </p>
+                </div>
+
+            </footer>
+
+        </div>
+
+        <!-- Script -->
+        <script>
+            document.addEventListener('click', function (event) {
+                // Verificar si el clic provino de una tarjeta de cliente
+                if (event.target.dataset.customerId) {
+                    const customerId = event.target.dataset.customerId;
+                    const customerName = event.target.querySelector('.text-dark').textContent;
+                    const customerAddress = event.target.querySelector('.mdi-map + span').textContent;
+                    const emailAddress = event.target.querySelector('.mdi-email + span').textContent;
+                    const phoneNumber = event.target.querySelector('.mdi-phone + span').textContent;
+
+                    // Llenar los elementos del nuevo modal "modal-contact-new" con los datos del cliente
+                    document.getElementById('customer-name-new').textContent = customerName;
+                    document.getElementById('customer-email-address-new').textContent = emailAddress;
+                    document.getElementById('customer-phone-number-new').textContent = phoneNumber;
+                    document.getElementById('customer-address-new').textContent = customerAddress;
+                    document.getElementById('customer-id-new').textContent = customerId;
+
+                    // Establecer el atributo data-customer-id en el botón Eliminar para que pueda accederse más adelante
+                    document.querySelector('.btn-delete-new').setAttribute('data-customer-id', customerId);
+
+                    // Mostrar el nuevo modal "modal-contact-new"
+                    $('#modal-contact-new').modal('show');
+                }
+            });
+
+
+            function deleteCustomer(customerId) {
+                // Realiza una solicitud HTTP DELETE a la API para eliminar el cliente
+                $.ajax({
+                    url: `https://proyectorg-api.azurewebsites.net/api/Customer`,
+                    type: 'DELETE',
+                    success: function (data) {
+                        // Cliente eliminado exitosamente, puedes realizar alguna acción adicional si es necesario
+                        console.log(`Cliente con ID ${customerId} eliminado.`);
+                        // Recarga la página para actualizar la lista de clientes (puedes hacerlo de manera más eficiente actualizando la vista sin recargar)
+                        location.reload();
+                    },
+                    error: function (error) {
+                        // Ocurrió un error al eliminar el cliente
+                        console.error(`Error al eliminar el cliente con ID ${customerId}: ${error.responseText}`);
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                $('#modal-contact-new .btn-delete-new').click(function () {
+                    var customerId = $('#modal-contact-new #customer-id-new').text();
+                    deleteCustomer(customerId);
+                });
+            });
+        </script>
+
+        <script>
+            function addCustomer() {
+                // Obtener los valores de los campos
+                var customerName = $("#CustomerName").val();
+                var customerAddress = $("#CustomerAddress").val();
+                var emailAddress = $("#EmailAddress").val();
+                var phoneNumber = $("#PhoneNumber").val();
+
+                // Verificar si algún campo está vacío
+                if (!customerName || !customerAddress || !emailAddress || !phoneNumber) {
+                    // Mostrar un mensaje de error si algún campo está vacío
+                    alert("Por favor, complete todos los campos.");
+                    return; // Evita el envío del formulario
+                }
+
+                // Expresión regular para validar un número de teléfono de 8 dígitos
+                var phoneRegex = /^\d{8}$/;
+
+                // Expresión regular para validar que el nombre no contenga números
+                var nameRegex = /^[A-Za-z ]+$/;
+
+                // Validar el formato del correo electrónico
+                //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+                if (!customerName.match(nameRegex)) {
+                    alert('El nombre no puede contener números ni caracteres especiales.');
+                    return;
+                }
+
+                if (!phoneNumber.match(phoneRegex)) {
+                    alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
+                    return;
+                }
+
+                if (!employeeemailAddress.match(emailRegex)) {
+                    alert('El correo debe cumplir con el formato.');
+                    return;
+                }
+
+                // Si todas las validaciones pasan, enviar los datos al servidor
+                var formData = {
+                    idType: 1,
+                    customerName: customerName,
+                    customerAddress: customerAddress,
+                    emailAddress: emailAddress,
+                    phoneNumber: phoneNumber
+                };
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "https://proyectorg-api.azurewebsites.net/api/Customer",
+                    data: JSON.stringify(formData),
+                    dataType: "json",
+                    success: function (data) {
+                        // Procesar la respuesta si es necesario
+                        // Puedes mostrar un mensaje de éxito o actualizar la lista de clientes, por ejemplo
+                        $("#CustomerName").val("");
+                        $("#CustomerAddress").val("");
+                        $("#EmailAddress").val("");
+                        $("#PhoneNumber").val("");
+                        location.reload();
+                    },
+                    error: function (error) {
+                        // Manejar errores si es necesario
+                        console.log(error);
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            $(document).on('click', 'button[data-customer-id]', function () {
+                // Obtén el ID del cliente desde el atributo de datos del botón
+                const customerId = parseInt($(this).data('customer-id'));
+
+                // A continuación, puedes llenar los campos del modal de edición
+                const customerName = $(this).closest('.card').find('h5').text();
+                const customerAddress = $(this).closest('.card').find('.mdi-map + span').text();
+                const emailAddress = $(this).closest('.card').find('.mdi-email + span').text();
+                const phoneNumber = $(this).closest('.card').find('.mdi-phone + span').text();
+
+                // Asignar los valores obtenidos a los campos del modal
+                $('#edit-customerName').val(customerName);
+                $('#edit-customerAddress').val(customerAddress);
+                $('#edit-EmailAddress').val(emailAddress);
+                $('#edit-PhoneNumber').val(phoneNumber);
+
+                // Asignar el valor del cliente ID al atributo data para uso posterior
+                $('#save-edit').attr('data-customer-id', customerId);
+
+                // Mostrar el modal de edición
+                $('#modal-edit-contact').modal('show');
+            });
+
+            // Manejar el evento "Guardar" en el modal de edición
+            $('#save-edit').click(function () {
+                // Obtener el ID del cliente del atributo data y convertirlo a número entero
+                const customerId = parseInt($('#save-edit').data('customer-id'), 10);
+
+                // Obtener los valores de los campos de edición
+                var editedCustomerName = $('#edit-customerName').val();
+                var editedCustomerAddress = $('#edit-customerAddress').val();
+                var editedEmailAddress = $('#edit-EmailAddress').val();
+                var editedPhoneNumber = $('#edit-PhoneNumber').val();
+
+                // Expresión regular para validar un número de teléfono de 8 dígitos
+                var phoneRegex = /^\d{8}$/;
+
+                // Expresión regular para validar que el nombre no contenga números
+                var nameRegex = /^[A-Za-z ]+$/;
+
+                // Validar el formato del correo electrónico
+                //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+
+                if (!editedCustomerName.match(nameRegex)) {
+                    alert('El nombre no puede contener números ni caracteres especiales.');
+                    return;
+                }
+
+                if (!editedPhoneNumber.match(phoneRegex)) {
+                    alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
+                    return;
+                }
+
+                if (!employeeemailAddress.match(emailRegex)) {
+                    alert('El correo debe cumplir con el formato.');
+                    return;
+                }
+
+                // Crea un objeto con los datos editados del cliente
+                var editedCustomer = {
+                    customerID: customerId, // Ajusta el nombre de la propiedad según tu API
+                    idType: 1,
+                    customerName: editedCustomerName,
+                    customerAddress: editedCustomerAddress,
+                    emailAddress: editedEmailAddress,
+                    phoneNumber: editedPhoneNumber
+                };
+
+                // Realiza una solicitud PUT o PATCH a la API para guardar los cambios
+                $.ajax({
+                    url: `https://proyectorg-api.azurewebsites.net/api/Customer`,
+                    type: 'PUT',
+                    contentType: 'application/json', // Configura el tipo de contenido como JSON
+                    data: JSON.stringify(editedCustomer),
+                    dataType: "json",
+                    success: function (data) {
+                        // Cliente editado exitosamente
+                        alert('Cliente editado con éxito.');
+                        // Cierra el modal de edición
+                        $('#modal-edit-contact').modal('hide');
+                        location.reload();
+                    },
+                    error: function (error) {
+                        // Ocurrió un error al editar el cliente
+                        console.error('Error al editar el cliente:', error);
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            var d = new Date();
+            var year = d.getFullYear();
+            document.getElementById("copy-year").innerHTML = year;
+        </script>
+
+
+        <script src="~/plugins/jquery/jquery.min.js"></script>
+        <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/plugins/simplebar/simplebar.min.js"></script>
+        <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+
+        <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+
+        <script src="~/js/mono.js"></script>
+        <script src="~/js/chart.js"></script>
+        <script src="~/js/map.js"></script>
+        <script src="~/js/custom.js"></script>
+        <script src="~/js/site.js"></script>
+
+
+        <script src="~/scripts/customer.js"></script>
+
+</body>
+</html>
+

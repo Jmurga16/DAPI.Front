@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-name" content="mono" />
 
+    <title>Mono - Responsive Admin & Dashboard Template</title>
+
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
     <link href="~/plugins/material/css/materialdesignicons.min.css" rel="stylesheet" />
@@ -13,7 +15,12 @@
 
     <!-- PLUGINS CSS STYLE -->
     <link href="~/plugins/nprogress/nprogress.css" rel="stylesheet" />
+
     <link href="~/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+
+    <link href="~/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
 
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="~/css/style.css" />
@@ -36,6 +43,7 @@
     ===================================== -->
     <div class="wrapper">
 
+
         <!-- ====================================
           ——— LEFT SIDEBAR WITH OUT FOOTER
         ===================================== -->
@@ -46,6 +54,8 @@
                     <a href="@Url.Action("Privacy", "Home")">
                         @* <img src="Images/Logo.png"> *@
                         <span class="brand-name">RG Advisory Group</span>
+
+
                     </a>
                 </div>
                 <!-- begin sidebar scrollbar -->
@@ -53,15 +63,15 @@
                     <!-- sidebar menu -->
                     <ul class="nav sidebar-inner" id="sidebar-menu">
 
-                        <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Privacy", "Home")">
+                        <li class="active">
+                            <a class="sidenav-item-link" href="@Url.Action("Asientos", "Home")">
                                 <i class="mdi mdi-home-circle"></i>
                                 <span class="nav-text">Principal</span>
                             </a>
                         </li>
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Colaboradores", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("List", "Employee")">
                                 <i class="mdi mdi-briefcase-account-outline"></i>
                                 <span class="nav-text">Colaboradores</span>
                             </a>
@@ -79,23 +89,23 @@
                         </li>
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Cliente", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("List", "Customer")">
                                 <i class="mdi mdi-account"></i>
                                 <span class="nav-text">Clientes</span>
                             </a>
                         </li>
 
-                        <li class="has-sub expanded active">
+                        <li class="has-sub">
                             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
                                aria-expanded="false" aria-controls="email">
-
                                 <i class="mdi mdi-square-edit-outline"></i>
                                 <span class="nav-text">Asiento</span><b class="caret"></b>
                             </a>
 
-                            <ul class="collapse show sub-menu" id="email" data-parent="#sidebar-menu">
+                            <ul class="collapse sub-menu" id="email"
+                                data-parent="#sidebar-menu">
 
-                                <li class="active">
+                                <li>
                                     <a class="sidenav-item-link" href="@Url.Action("Create", "Seat")">
                                         <span class="nav-text">Crear</span>
 
@@ -108,8 +118,8 @@
 
                                     </a>
                                 </li>
-                            </ul>
 
+                            </ul>
                         </li>
 
                         <li>
@@ -136,10 +146,12 @@
             </div>
         </aside>
 
+
+
         <!-- ====================================
         ——— PAGE WRAPPER
         ===================================== -->
-        <div class="page-wrapper">
+        <div class="page-wrapper" style="width:auto !important">
 
             <!-- Header -->
             <header class="main-header" id="header">
@@ -149,10 +161,36 @@
                         <span class="sr-only">Toggle navigation</span>
                     </button>
 
-                    <span class="page-title">Crear Asiento</span>
+                    <span class="page-title">AccountingSoft</span>
 
                     <div class="navbar-right ">
-                                               
+
+                        <!-- search form -->
+
+                        <form action="index.html" method="get">
+                            <div class="input-group input-group-sm" id="input-group-search">
+
+                                <div class="input-group-append">
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="dropdown-menu dropdown-menu-search">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Morbi leo risus</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Dapibus ac facilisis in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Porta ac consectetur ac</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Vestibulum at eros</a>
+                            </li>
+
+                        </ul>
+
                     </div>
 
                     <ul class="nav navbar-nav">
@@ -160,67 +198,29 @@
                         <!-- User Account -->
 
                         <li class="dropdown-footer">
-                            <a class="dropdown-link-item" href="@Url.Action("Index", "Home")"> <i class="mdi mdi-logout"></i> Salir </a>
+                            <a class="dropdown-link-item" href="@Url.Action("", "Home")"> <i class="mdi mdi-logout"></i> Salir </a>
                         </li>
                     </ul>
+
                 </nav>
             </header>
+        </div>
 
 
-            <!-- ====================================
-            ——— CONTENT WRAPPER
-            ===================================== -->
-            <!-- Cuentas -->
-            <div class="card card-default" style="margin-top:2rem">
-
-                <div class="card-body">
-
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput4">Fecha</label>
-                            <input type="date" id="date_seat" class="form-control" placeholder="" required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">currency</label>
-                            <select class="form-control" id="currency">
-                                <option value="USD">USD</option>
-                                <option value="CRC">CRC</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput4">Tipo de cambio</label>
-                            <input type="number" id="exchange_rate" class="form-control" placeholder="" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput4">Referencia</label>
-                            <input type="text" id="reference" class="form-control" placeholder="" required>
-                        </div>
-                        <a id="btnCreate" class="btn btn-primary" onclick="addSeat()">Crear</a>
-                    </form>
-
-                    <br>
-                    <br>
-
-                    <!-- Footer -->
-                    <footer class="footer mt-auto">
-                        <div class="copyright bg-white">
-                            <p>
-                                &copy; <span id="copy-year"></span> Copyright RG Advisory Group
-                            </p>
-                        </div>
-                        <script>
-                            var d = new Date();
-                            var year = d.getFullYear();
-                            document.getElementById("copy-year").innerHTML = year;
-                        </script>
-                    </footer>
-
-                </div>
+        <!-- ====================================
+        ——— CONTENT WRAPPER
+        ===================================== -->
+        <div class="content-wrapper">
+            <!-- Top Statistics -->
+            <br>
+            <br>
+            <br>
+            <div class="card-header">
+                <h1 class="mb-3" style="text-align:center">Bienvenido a AccountingSoft</h1>
+                <br>
+                <strong id="customer-name" style="  display: flex; justify-content: center;"></strong>
             </div>
+
         </div>
     </div>
 
@@ -228,14 +228,13 @@
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/plugins/simplebar/simplebar.min.js"></script>
     <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
-    <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+
 
     <script src="~/js/mono.js"></script>
+    <script src="~/js/chart.js"></script>
     <script src="~/js/map.js"></script>
     <script src="~/js/custom.js"></script>
-    <script src="~/scripts/seat.js"></script>
 
+    <script src="~/scripts/principal.js"></script>
 </body>
 </html>
-
-

@@ -11,6 +11,16 @@ namespace Proyecto_Contabilidad.Controllers
             return View();
         }
 
+        public ActionResult RecoverPassword()
+        {
+            return View();
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
         // GET: AuthController/Details/5
         public ActionResult Details(int id)
         {

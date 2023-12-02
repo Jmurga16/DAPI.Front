@@ -1,0 +1,268 @@
+﻿@{
+    ViewData["Title"] = "Historial Usuarios";
+}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-name" content="mono" />
+
+    <title>Mono - Responsive Admin & Dashboard Template</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
+    <link href="~/plugins/material/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/plugins/simplebar/simplebar.css" rel="stylesheet" />
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href="~/plugins/nprogress/nprogress.css" rel="stylesheet" />
+
+    <link href="~/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <!-- MONO CSS -->
+    <link id="main-css-href" rel="stylesheet" href="~/css/style.css" />
+
+    <!-- FAVICON -->
+    <link href="~/images/favicon.png" rel="shortcut icon" />
+
+    <script src="~/plugins/nprogress/nprogress.js"></script>
+</head>
+
+
+<body class="navbar-fixed sidebar-fixed" id="body">
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+
+    <!-- ====================================
+    ——— WRAPPER
+    ===================================== -->
+    <div class="wrapper">
+
+
+        <!-- ====================================
+          ——— LEFT SIDEBAR WITH OUT FOOTER
+        ===================================== -->
+        <aside class="left-sidebar sidebar-dark" id="left-sidebar">
+            <div id="sidebar" class="sidebar sidebar-with-footer">
+                <!-- Aplication Brand -->
+                <div class="app-brand">
+                    <a href="@Url.Action("Privacy", "Home")">
+                        @* <img src="Images/Logo.png"> *@
+                        <span class="brand-name">RG Advisory Group</span>
+
+
+                    </a>
+                </div>
+                <!-- begin sidebar scrollbar -->
+                <div class="sidebar-left" data-simplebar style="height: 100%;">
+                    <!-- sidebar menu -->
+                    <ul class="nav sidebar-inner" id="sidebar-menu">
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Principal", "Home")">
+                                <i class="mdi mdi-home-circle"></i>
+                                <span class="nav-text">Principal</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("List", "Employee")">
+                                <i class="mdi mdi-briefcase-account-outline"></i>
+                                <span class="nav-text">Colaboradores</span>
+                            </a>
+                        </li>
+
+                        <li class="active">
+                            <a class="sidenav-item-link" href="@Url.Action("", "Log")">
+                                <i class="mdi mdi-chart-line"></i>
+                                <span class="nav-text">Métricas</span>
+                            </a>
+                        </li>
+
+                        <li class="section-title">
+                            Funciones
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("List", "Customer")">
+                                <i class="mdi mdi-account"></i>
+                                <span class="nav-text">Clientes</span>
+                            </a>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
+                               aria-expanded="false" aria-controls="email">
+
+                                <i class="mdi mdi-square-edit-outline"></i>
+                                <span class="nav-text">Asiento</span><b class="caret"></b>
+                            </a>
+
+                            <ul class="collapse sub-menu" id="email" data-parent="#sidebar-menu">
+
+                                <li>
+                                    <a class="sidenav-item-link" href="@Url.Action("Create", "Seat")">
+                                        <span class="nav-text">Crear</span>
+
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="sidenav-item-link" href="@Url.Action("List", "Seat")">
+                                        <span class="nav-text">Listar</span>
+
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("", "Report")">
+                                <i class="mdi mdi-folder-outline"></i>
+                                <span class="nav-text">Reportes</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("Account", "Catalog")">
+                                <i class="mdi mdi-file-multiple"></i>
+                                <span class="nav-text">Catálogo De Cuentas</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="sidebar-footer">
+                    <div class="sidebar-footer-content">
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+
+
+        <!-- ====================================
+        ——— PAGE WRAPPER
+        ===================================== -->
+        <div class="page-wrapper">
+
+            <!-- Header -->
+            <header class="main-header" id="header">
+                <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+                    <!-- Sidebar toggle button -->
+                    <button id="sidebar-toggler" class="sidebar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+
+                    <span class="page-title">Métricas</span>
+
+                    <div class="navbar-right ">
+                    </div>
+
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account -->
+
+
+                        <li class="dropdown-footer">
+                            <a class="dropdown-link-item" href="@Url.Action("Index", "Auth")"> <i class="mdi mdi-logout"></i> Salir </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </header>
+
+
+            <!-- ====================================
+            ——— CONTENT WRAPPER
+            ===================================== -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h2>Historial</h2>
+
+
+                </div>
+                <div class="card-body">
+
+                    <table id="productsTable" class="table table-hover table-product" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Acción</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy; <span id="copy-year"></span> Copyright RG Advisory Group
+                    </p>
+                </div>
+
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        var d = new Date();
+        var year = d.getFullYear();
+        document.getElementById("copy-year").innerHTML = year;
+    </script>
+
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/plugins/simplebar/simplebar.min.js"></script>
+    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+
+
+    <script src="~/plugins/apexcharts/apexcharts.js"></script>
+
+    <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/plugins/daterangepicker/moment.min.js"></script>
+    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('input[name="dateRange"]').daterangepicker({
+                autoUpdateInput: false,
+                singleDatePicker: true,
+                locale: {
+                    cancelLabel: 'Clear'
+                }
+            });
+            jQuery('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
+                jQuery(this).val(picker.startDate.format('MM/DD/YYYY'));
+            });
+            jQuery('input[name="dateRange"]').on('cancel.daterangepicker', function (ev, picker) {
+                jQuery(this).val('');
+            });
+        });
+    </script>
+
+
+</body>
+</html>
+

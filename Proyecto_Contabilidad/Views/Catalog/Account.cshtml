@@ -1,9 +1,7 @@
-﻿<!DOCTYPE html>
-<html lang="en" dir="ltr">
+﻿
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta charset="UTF-8" />
     <meta name="theme-name" content="mono" />
 
     <title>Mono - Responsive Admin & Dashboard Template</title>
@@ -27,7 +25,7 @@
     <script src="~/plugins/nprogress/nprogress.js"></script>
 
     <script src="~/plugins/jquery/jquery.min.js"></script>
-    
+
 
 </head>
 
@@ -161,18 +159,16 @@
                     <span class="page-title">Catálogo de Cuentas</span>
 
                     <div class="navbar-right ">
-
                     </div>
 
                     <ul class="nav navbar-nav">
 
                         <!-- User Account -->
-                        
 
-                                <li class="dropdown-footer">
+                        <li class="dropdown-footer">
                             <a class="dropdown-link-item" href="@Url.Action("Index", "Auth")"> <i class="mdi mdi-logout"></i> Salir </a>
-                                </li>
-                           
+                        </li>
+                    </ul>
                 </nav>
             </header>
 
@@ -207,8 +203,8 @@
                     </table>
 
                 </div>
-               
-                <!-- Add Cuenta Button  -->
+
+                <!-- Nueva Cuenta -->
                 <div class="modal fade" id="modal-add-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                      aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -223,7 +219,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="accountCode">Cuenta</label>
-                                                <input type="text" class="form-control" id="accountCode" value="">
+                                                <input type="text" class="form-control" id="accountCode" placeholder="X-XX-XX-XXX-XXX">
                                             </div>
                                         </div>
 
@@ -237,7 +233,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="typeAccount">Tipo de cuenta</label>
-                                                <select class="form-control" id="typeAccount">
+                                                <select class="form-select" id="typeAccount">
                                                     <option value="Activo">Activo</option>
                                                     <option value="Gasto">Gasto</option>
                                                     <option value="Ingreso">Ingreso</option>
@@ -250,7 +246,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group mb-4">
                                                 <label for="conversion">Conversión</label>
-                                                <select class="form-control" id="conversion">
+                                                <select class="form-select" id="conversion">
                                                     <option value="0">No Convierte</option>
                                                     <option value="1">De Colon a Dolar</option>
                                                     <option value="2">De Dolar a Colon</option>
@@ -269,6 +265,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!----Editar Cuenta----->
                 <div class="modal fade" id="modal-edit-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                      aria-hidden="true">
@@ -285,7 +282,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="accountCodeEdit">Cuenta</label>
-                                                <input type="text" class="form-control" id="accountCodeEdit" >
+                                                <input type="text" class="form-control" id="accountCodeEdit" placeholder="X-XX-XX-XXX-XXX">
                                             </div>
                                         </div>
 
@@ -299,7 +296,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="typeAccountEdit">Tipo de cuenta</label>
-                                                <select class="form-control" id="typeAccountEdit">
+                                                <select class="form-select" id="typeAccountEdit">
                                                     <option value="Activo">Activo</option>
                                                     <option value="Gasto">Gasto</option>
                                                     <option value="Ingreso">Ingreso</option>
@@ -312,7 +309,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group mb-4">
                                                 <label for="conversionEdit">Conversión</label>
-                                                <select class="form-control" id="conversionEdit">
+                                                <select class="form-select" id="conversionEdit">
                                                     <option value="0">No Convierte</option>
                                                     <option value="1">De Colón a Dolar</option>
                                                     <option value="2">De Dólar a Colón</option>
@@ -340,27 +337,25 @@
                         &copy; <span id="copy-year"></span> Copyright RG Advisory Group
                     </p>
                 </div>
-                <script>
-                    var d = new Date();
-                    var year = d.getFullYear();
-                    document.getElementById("copy-year").innerHTML = year;
-                </script>
             </footer>
-
         </div>
     </div>
-    
 
-    
+    <script>
+        var d = new Date();
+        var year = d.getFullYear();
+        document.getElementById("copy-year").innerHTML = year;
+    </script>
+
+
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/plugins/simplebar/simplebar.min.js"></script>
     <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
     <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
 
 
-    <script src="~/js/mono.js"></script>    
+    <script src="~/js/mono.js"></script>
     <script src="~/scripts/accountCatalog.js"></script>
 
 </body>
-</html>
-

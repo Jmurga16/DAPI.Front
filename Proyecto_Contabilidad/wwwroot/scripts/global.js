@@ -20,5 +20,11 @@ var listAccountType = [
 ];
 
 //#endregion
+function alertWarning(title) {
+    Swal.fire({ title: title, icon: "warning" });
+}
 
+function alertSuccess(title) {
+    Swal.fire({ title: title, icon: "success" });
+}
 

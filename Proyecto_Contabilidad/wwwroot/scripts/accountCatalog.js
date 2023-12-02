@@ -1,5 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
     loadDataFromAPI()
+
+    const accountCode = document.getElementById('accountCode');
+    const accountCodeEdit = document.getElementById('accountCodeEdit');
+    const maskOptions = {
+        mask: '0-00-00-000-000'
+    };
+
+    IMask(accountCode, maskOptions);
+    IMask(accountCodeEdit, maskOptions);
+
 });
 
 var accountId = 0
@@ -56,9 +66,8 @@ function addAccount() {
     var TypeAccount = $("#typeAccount").val();
     var conversionValue = $("#conversion").val();
 
-    // Verificar si algún campo está vacío
-    if (AccountCode === "" || NameAccount === "" || TypeAccount === "" || conversionValue === "") {
-        alert("Todos los campos son obligatorios. Por favor, complete todos los campos.");
+    // Validaciones
+    if (!validateFormAccount()) {        
         return; // Detener la ejecución si hay campos vacíos
     }
 
@@ -68,7 +77,8 @@ function addAccount() {
         accountName: NameAccount,
         accountCode: AccountCode,
         accountType: TypeAccount,
-        conversion: conversionValue
+        conversion: conversionValue,
+        active: true
     };
 
     $.ajax({
@@ -86,6 +96,35 @@ function addAccount() {
             console.error(error);
         }
     });
+}
+
+function validateFormAccount() {
+    var isValid = true;
+    var message = "";
+    var AccountCode = $("#accountCode").val();
+    var NameAccount = $("#nameAccount").val();
+    var TypeAccount = $("#typeAccount").val();
+    var conversionValue = $("#conversion").val();
+
+    // Verificar si algún campo está vacío
+    if (AccountCode === "" || NameAccount === "" || TypeAccount === "" || conversionValue === "") {
+        isValid = false
+        message = `Todos los campos son obligatorios. Por favor, complete todos los campos.`
+    }
+    else if (AccountCode.length != 15) {
+        isValid = false
+        message = `El campo Cuenta debe tener el formato correcto.`
+    }
+
+    if (!isValid) {
+        Swal.fire({
+            title: message,
+            text: "",
+            icon: "warning"
+        });
+    }
+
+    return isValid;
 }
 
 function setDataModal(id) {
@@ -134,7 +173,8 @@ function editAccount() {
         accountName: NameAccount,
         accountCode: AccountCode,
         accountType: TypeAccount,
-        conversion: conversionValue
+        conversion: conversionValue,
+        active:true
     };
 
     $.ajax({
@@ -158,11 +198,12 @@ function deleteAccount(id) {
     accountId = id;
 
     Swal.fire({
-        title: "Desea eliminar el Catalogo de cuentas seleccionado?",
+        title: `&#191;Desea eliminar el Catalogo de cuentas seleccionado?`,
         icon: "question",
         showCancelButton: true,
-        confirmButtonText: "Guardar",
+        confirmButtonText: "Aceptar",
         cancelButtonText: "Cancelar",
+        reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({

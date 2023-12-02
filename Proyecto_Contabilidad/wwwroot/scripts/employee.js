@@ -15,24 +15,28 @@ function loadDataFromAPI() {
                                                         <div class="card card-default p-4" data-toggle="modall" data-target="#modal-contact" data-employee-id="${employee.employeeID}">
                                                             <a href="javascript:0" class="media text-secondary" data-toggle="modal" data-target="#modal-contact">
                                                                 <div class="media-body">
-                                                                    <h5 class="mt-0 mb-2 text-dark">${employee.employeeName}</h5>
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <h5 class="mt-0 mb-2 text-dark">${employee.firstName} ${employee.lastName}</h5>
+                                                                        <div class="dropdown">
+                                                                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                                                            </a>
+                                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                                                                <a class="dropdown-item" data-toggle="modal" data-target="#modal-edit-contact" onclick="setDataModal(${employee.employeeID})" href="#">Editar</a>
+                                                                                <a class="dropdown-item" onclick="deleteAccount(${employee.employeeID})" href="#">Eliminar</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                     <ul class="list-unstyled text-smoke text-smoke">
+                                                            
                                                                         <li class="d-flex">
-                                                                            <i class="mdi mdi-map mr-1"></i>
-                                                                            <span>${employee.employeeLastname}</span>
-                                                                        </li>
-                                                                        <li class="d-flex">
-                                                                        <i class="mdi mdi-map mr-1"></i>
-                                                                       <span>${employee.employeeUsername}</span>
+                                                                            <i class="mdi mdi-account mr-1"></i>
+                                                                            <span>${employee.username}</span>
                                                                         </li>
                                                                         <li class="d-flex">
                                                                             <i class="mdi mdi-email mr-1"></i>
                                                                             <span>${employee.emailAddress}</span>
-                                                                        </li>
-                                                                        <li class="d-flex">
-                                                                            <i class="mdi mdi-phone mr-1"></i>
-                                                                            <span>${employee.password}</span>
-                                                                        </li>
+                                                                        </li>                                                                        
                                                                         <li class="d-flex">
                                                                         <i class="mdi mdi-id mr-1"></i>
                                                                         <span style="opacity: 0;">${employee.employeeID}</span>

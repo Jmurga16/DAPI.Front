@@ -11,14 +11,19 @@
 
     <title>Login</title>
 
-
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="css/style.css" />
 
     <!-- FAVICON -->
     <link href="images/favicon.png" rel="shortcut icon" />
 
-
+    <style>
+        a {
+            cursor: pointer;
+            color: #2563eb;
+            text-decoration-line: none
+        }
+    </style>
 
 </head>
 <body class="bg-light-gray" id="body">
@@ -56,7 +61,7 @@
                                                 <label class="custom-control-label" for="customCheck2">Recordarme</label>
                                             </div>
 
-                                            <a class="text-color" href="@Url.Action("RecoverPassword", "Auth")"> Olvido su contraseña? </a>
+                                            <a href="@Url.Action("RecoverPassword", "Auth")"> ¿Olvidaste tu contraseña? </a>
 
                                         </div>
 

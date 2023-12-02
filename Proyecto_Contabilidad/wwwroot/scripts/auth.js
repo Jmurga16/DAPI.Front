@@ -6,11 +6,7 @@ function login() {
     const password = document.getElementById('Userpassword').value;
 
     if (username == "" || password == "") {
-        Swal.fire(
-            'Digite sus credenciales',
-            '',
-            'warning'
-        )
+        alertWarning(`Digite sus credenciales`)
     }
     else {
         fetch(base_url + '/Login/auth', {
@@ -28,17 +24,22 @@ function login() {
                     localStorage.setItem("employeeId", data.employeeId);
                     window.location.href = '/Home/Privacy'; // Redirigir a la página de dashboard después del inicio de sesión
                 } else {
-
-                    Swal.fire(
-                        'Credenciales incorrectas',
-                        '',
-                        'error'
-                    )
+                    alertError(`Credenciales incorrectas`)
                 }
             })
-            
+
             .catch(error => {
                 console.error('Error:', error);
             });
     }
+}
+
+function recoverPassword() {
+    const email = document.getElementById('email2').value;
+
+    console.log(email);
+}
+
+function changePassword() {
+
 }

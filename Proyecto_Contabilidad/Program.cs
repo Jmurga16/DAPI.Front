@@ -33,6 +33,10 @@ app.MapControllerRoute(
     pattern: "{controller=Seat}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
+    name: "log",
+    pattern: "{controller=Log}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
     name: "catalog",
     pattern: "{controller=Catalog}/{action=Index}/{id?}");
 
@@ -43,5 +47,13 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "customer",
     pattern: "{controller=Customer}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "report",
+    pattern: "{controller=Report}/{action=Index}/{id?}");
+
+
+
+
 
 app.Run();

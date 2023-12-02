@@ -18,6 +18,12 @@
 
     <link href="~/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css" rel="stylesheet" />
 
+    <link href="~/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+
+    <link href="~/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="~/css/style.css" />
 
@@ -33,6 +39,7 @@
         NProgress.configure({ showSpinner: false });
         NProgress.start();
     </script>
+
 
     <!-- ====================================
     ——— WRAPPER
@@ -60,21 +67,21 @@
                     <ul class="nav sidebar-inner" id="sidebar-menu">
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Principal", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("Privacy", "Home")">
                                 <i class="mdi mdi-home-circle"></i>
                                 <span class="nav-text">Principal</span>
                             </a>
                         </li>
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("List", "Employee")">
+                            <a class="sidenav-item-link" href="@Url.Action("Colaboradores", "Home")">
                                 <i class="mdi mdi-briefcase-account-outline"></i>
                                 <span class="nav-text">Colaboradores</span>
                             </a>
                         </li>
 
-                        <li class="active">
-                            <a class="sidenav-item-link" href="@Url.Action("Metricas", "Home")">
+                        <li>
+                            <a class="sidenav-item-link" href="@Url.Action("", "Log")">
                                 <i class="mdi mdi-chart-line"></i>
                                 <span class="nav-text">Métricas</span>
                             </a>
@@ -85,7 +92,7 @@
                         </li>
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("List", "Customer")">
+                            <a class="sidenav-item-link" href="@Url.Action("Cliente", "Home")">
                                 <i class="mdi mdi-account"></i>
                                 <span class="nav-text">Clientes</span>
                             </a>
@@ -119,8 +126,8 @@
 
                         </li>
 
-                        <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
+                        <li class="active">
+                            <a class="sidenav-item-link" href="@Url.Action("", "Report")">
                                 <i class="mdi mdi-folder-outline"></i>
                                 <span class="nav-text">Reportes</span>
                             </a>
@@ -145,7 +152,6 @@
         </aside>
 
 
-
         <!-- ====================================
         ——— PAGE WRAPPER
         ===================================== -->
@@ -159,7 +165,7 @@
                         <span class="sr-only">Toggle navigation</span>
                     </button>
 
-                    <span class="page-title">Métricas</span>
+                    <span class="page-title">Reportes</span>
 
                     <div class="navbar-right ">
                     </div>
@@ -168,69 +174,75 @@
 
                         <!-- User Account -->
 
-
                         <li class="dropdown-footer">
                             <a class="dropdown-link-item" href="@Url.Action("Index", "Auth")"> <i class="mdi mdi-logout"></i> Salir </a>
                         </li>
-                    </ul>
 
+                    </ul>
                 </nav>
             </header>
+
+
 
 
             <!-- ====================================
             ——— CONTENT WRAPPER
             ===================================== -->
+
             <div class="card card-default">
                 <div class="card-header">
-                    <h2>Historial</h2>
-
+                    <h2>Balance de Comprobación</h2>
+                    <a class="btn btn-primary">Descargar</a>
 
                 </div>
+
                 <div class="card-body">
 
                     <table id="productsTable" class="table table-hover table-product" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Usuario</th>
-                                <th>Acción</th>
-                                <th>Fecha</th>
-                                <th>Hora</th>
+                                <th>Código</th>
+                                <th>Nombre Cuenta</th>
+                                <th>Saldo Inicial CRC</th>
+                                <th>Débitos CRC</th>
+                                <th>Créditos CRC</th>
+                                <th>Saldo Final CRC</th>
+                                <th>Saldo Inicial USD</th>
+                                <th>Débitos USD</th>
+                                <th>Créditos USD</th>
+                                <th>Saldo Final USD</th>
                                 <th></th>
                             </tr>
                         </thead>
 
                     </table>
+                    <br>
+                    <br>
 
                 </div>
+
+                <!-- Footer -->
+                <footer class="footer mt-auto">
+                    <div class="copyright bg-white">
+                        <p>
+                            &copy; <span id="copy-year"></span> Copyright RG Advisory Group
+                        </p>
+                    </div>
+                    <script>
+                        var d = new Date();
+                        var year = d.getFullYear();
+                        document.getElementById("copy-year").innerHTML = year;
+                    </script>
+                </footer>
 
             </div>
-
-
-            <!-- Footer -->
-            <footer class="footer mt-auto">
-                <div class="copyright bg-white">
-                    <p>
-                        &copy; <span id="copy-year"></span> Copyright RG Advisory Group
-                    </p>
-                </div>
-
-            </footer>
-
         </div>
     </div>
-
-    <script>
-        var d = new Date();
-        var year = d.getFullYear();
-        document.getElementById("copy-year").innerHTML = year;
-    </script>
 
     <script src="~/plugins/jquery/jquery.min.js"></script>
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/plugins/simplebar/simplebar.min.js"></script>
     <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
-
 
     <script src="~/plugins/apexcharts/apexcharts.js"></script>
 
@@ -238,7 +250,6 @@
 
     <script src="~/plugins/daterangepicker/moment.min.js"></script>
     <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
-
     <script>
         jQuery(document).ready(function () {
             jQuery('input[name="dateRange"]').daterangepicker({
@@ -257,6 +268,12 @@
         });
     </script>
 
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <script src="~/js/mono.js"></script>
+    <script src="~/js/chart.js"></script>
+    <script src="~/js/map.js"></script>
+    <script src="~/js/custom.js"></script>
 
 </body>
 </html>

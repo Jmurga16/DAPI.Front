@@ -28,3 +28,11 @@ function alertSuccess(title) {
     Swal.fire({ title: title, icon: "success" });
 }
 
+function alertError(title) {
+    Swal.fire({ title: title, icon: "error" });
+}
+
+function logout() {    
+    localStorage.removeItem("username");
+    localStorage.removeItem("employeeId");
+}

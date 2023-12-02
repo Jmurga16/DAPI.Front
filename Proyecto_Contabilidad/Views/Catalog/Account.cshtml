@@ -73,7 +73,7 @@
                         </li>
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Metricas", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("", "Log")">
                                 <i class="mdi mdi-chart-line"></i>
                                 <span class="nav-text">Métricas</span>
                             </a>
@@ -119,7 +119,7 @@
                         </li>
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Reportes", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("", "Report")">
                                 <i class="mdi mdi-folder-outline"></i>
                                 <span class="nav-text">Reportes</span>
                             </a>
@@ -166,7 +166,7 @@
                         <!-- User Account -->
 
                         <li class="dropdown-footer">
-                            <a class="dropdown-link-item" href="@Url.Action("Index", "Auth")"> <i class="mdi mdi-logout"></i> Salir </a>
+                            <a class="dropdown-link-item" href="@Url.Action("Index", "Auth")" onclick="logout()"> <i class="mdi mdi-logout"></i> Salir </a>
                         </li>
                     </ul>
                 </nav>
@@ -356,6 +356,6 @@
 
 
     <script src="~/js/mono.js"></script>
-    <script src="~/scripts/accountCatalog.js"></script>
+    <script src="~/scripts/catalog/account.js"></script>
 
 </body>

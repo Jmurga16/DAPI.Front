@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     loadDataFromAPI()
 
     const accountCode = document.getElementById('accountCode');

@@ -20,6 +20,17 @@ var listAccountType = [
 ];
 
 //#endregion
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    user = localStorage.getItem("username");
+    if (!user && location.href != url_front && !location.href.includes("Auth")) {
+        window.location.href = url_front;
+    }
+
+});
+
+
 function alertWarning(title) {
     Swal.fire({ title: title, icon: "warning" });
 }
@@ -32,7 +43,8 @@ function alertError(title) {
     Swal.fire({ title: title, icon: "error" });
 }
 
-function logout() {    
+function logout() {
     localStorage.removeItem("username");
     localStorage.removeItem("employeeId");
+    window.location.href = url_front;
 }

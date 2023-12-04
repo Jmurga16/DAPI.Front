@@ -163,7 +163,7 @@ function editAccount() {
 
     // Verificar si algún campo está vacío
     if (AccountCode === "" || NameAccount === "" || TypeAccount === "" || conversionValue === "") {
-        alert("Todos los campos son obligatorios. Por favor, complete todos los campos.");
+        alertWarning("Todos los campos son obligatorios. Por favor, complete todos los campos.");
         return; // Detener la ejecución si hay campos vacíos
     }
 

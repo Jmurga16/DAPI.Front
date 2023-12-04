@@ -1,5 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="en" dir="ltr">
+﻿@{
+    ViewData["Title"] = "Colaboradores";
+}
+
+
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -230,7 +235,6 @@
                                                     Eliminar
                                                 </button>
 
-
                                             </div>
                                         </div>
                                     </div>
@@ -260,8 +264,7 @@
                 </div>
             </div>
 
-
-            <!-- Add Contact Button  -->
+            <!-- Agregar Colaborador  -->
             <div class="modal fade" id="modal-add-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
@@ -274,24 +277,24 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="firstName">Nombre</label>
-                                            <input type="text" class="form-control" id="employeeName" name="employeeName" value="">
+                                            <input type="text" class="form-control" id="firstName" name="firstName" value="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="lastName">Apellidos</label>
-                                            <input type="text" class="form-control" id="employeeLastName" name="employeeLastName" value="">
+                                            <input type="text" class="form-control" id="lastName" name="lastName" value="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group mb-4">
-                                            <label for="user">Usuario</label>
-                                            <input type="text" class="form-control" id="employeeUsername" name="employeeUsername" value="">
+                                            <label for="username">Usuario</label>
+                                            <input type="text" class="form-control" id="username" name="username" value="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group mb-4">
-                                            <label for="email">Correo electrónico</label>
+                                            <label for="emailAddress">Correo electrónico</label>
                                             <input type="text" class="form-control" id="emailAddress" name="emailAddress" value="">
                                         </div>
                                     </div>
@@ -305,7 +308,7 @@
                             </div>
                             <div class="modal-footer px-4">
                                 <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary btn-pill" data-dismiss="modal" onclick="addemployee()">Agregar</button>
+                                <button type="button" class="btn btn-primary btn-pill" onclick="addemployee()" data-dismiss="modal">Agregar</button>
                             </div>
                         </form>
                     </div>
@@ -324,36 +327,44 @@
                                 <div class="row mb-2">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="edit-employeeName">Nombre</label>
-                                            <input type="text" class="form-control" id="edit-employeeName">
+                                            <label for="edit-firstName">Nombre</label>
+                                            <input type="text" class="form-control" id="edit-firstName">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="edit-employeeAddress">Ubicación</label>
-                                            <input type="text" class="form-control" id="edit-employeeAddress">
+                                            <label for="edit-lastName">Apellidos</label>
+                                            <input type="text" class="form-control" id="edit-lastName">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group mb-4">
-                                            <label for="edit-EmailAddress">Correo Electrónico</label>
-                                            <input type="email" class="form-control" id="edit-EmailAddress">
+                                            <label for="edit-username">Usuario</label>
+                                            <input type="text" class="form-control" id="edit-username" name="edit-username">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group mb-4">
-                                            <label for="edit-PhoneNumber">Número de teléfono</label>
-                                            <input type="number" class="form-control" id="edit-PhoneNumber">
+                                            <label for="edit-emailAddress">Correo electrónico</label>
+                                            <input type="email" class="form-control" id="edit-emailAddress" name="edit-emailAddress">
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label for="edit-password">Contraseña</label>
+                                            <input type="text" class="form-control" id="edit-password" name="edit-password">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="modal-footer px-4">
                                 <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary btn-pill" id="save-edit">Guardar</button>
+                                <button type="button" class="btn btn-primary btn-pill" onclick="editEmployee()" data-dismiss="modal">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -386,224 +397,7 @@
     <script src="~/js/custom.js"></script>
     <script src="~/js/site.js"></script>
 
-    <!-- Script -->
-    <script>
-        document.addEventListener('click', function (event) {
-            // Verificar si el clic provino de una tarjeta de colaborador
-            if (event.target.dataset.employeeId) {
-                const employeeId = event.target.dataset.employeeId;
-                const employeeName = event.target.querySelector('.text-dark').textContent;
-                const employeeLastName = event.target.querySelector('.mdi-map + span').textContent;
-                const emailAddress = event.target.querySelector('.mdi-email + span').textContent;
-                const username = event.target.querySelector('.mdi-user + span').textContent;
-                const password = event.target.querySelector('.mdi-user + span').textContent;
-
-                // Llenar los elementos del nuevo modal "modal-contact-new" con los datos del Colaborador
-                document.getElementById('employee-first-name-new').textContent = employeeName;
-                document.getElementById('employee-last-name-new').textContent = employeeLastName;
-                document.getElementById('employee-user-name-new').textContent = employeeUsername;
-                document.getElementById('employee-email-address-new').textContent = emailAddress;
-                document.getElementById('employee-password-new').textContent = password;
-                document.getElementById('employee-id-new').textContent = employeeId;
-
-                // Establecer el atributo data-employee-id en el botón Eliminar para que pueda accederse más adelante
-                document.querySelector('.btn-delete-new').setAttribute('data-employee-id', employeeId);
-
-                // Mostrar el nuevo modal "modal-contact-new"
-                $('#modal-contact-new').modal('show');
-            }
-        });
-
-
-        function deleteemployee(employeeId) {
-            // Realiza una solicitud HTTP DELETE a la API para eliminar el colaborador
-            $.ajax({
-                url: `https://proyectorg-api.azurewebsites.net/api/Employee`,
-                type: 'DELETE',
-                success: function (data) {
-                    // Colaborador eliminado exitosamente, puedes realizar alguna acción adicional si es necesario
-                    console.log(`Colaborador con ID ${employeeId} eliminado.`);
-                    // Recarga la página para actualizar la lista de Colaboradors (puedes hacerlo de manera más eficiente actualizando la vista sin recargar)
-                    location.reload();
-                },
-                error: function (error) {
-                    // Ocurrió un error al eliminar el Colaborador
-                    console.error(`Error al eliminar el Colaborador con ID ${employeeId}: ${error.responseText}`);
-                }
-            });
-        }
-
-        $(document).ready(function () {
-            $('#modal-contact-new .btn-delete-new').click(function () {
-                var employeeId = $('#modal-contact-new #employee-id-new').text();
-                deleteemployee(employeeId);
-            });
-        });
-    </script>
-
-    <script>
-        function addemployee() {
-            // Obtener los valores de los campos
-            var employeeName = $("#employeeName").val();
-            var employeeAddress = $("#employeeAddress").val();
-            var emailAddress = $("#EmailAddress").val();
-            var phoneNumber = $("#PhoneNumber").val();
-
-            // Verificar si algún campo está vacío
-            if (!employeeName || !employeeAddress || !emailAddress || !phoneNumber) {
-                // Mostrar un mensaje de error si algún campo está vacío
-                alert("Por favor, complete todos los campos.");
-                return; // Evita el envío del formulario
-            }
-
-            // Expresión regular para validar un número de teléfono de 8 dígitos
-            var phoneRegex = /^\d{8}$/;
-
-            // Expresión regular para validar que el nombre no contenga números
-            var nameRegex = /^[A-Za-z ]+$/;
-
-            // Validar el formato del correo electrónico
-            //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-            if (!employeeName.match(nameRegex)) {
-                alert('El nombre no puede contener números ni caracteres especiales.');
-                return;
-            }
-
-            if (!phoneNumber.match(phoneRegex)) {
-                alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
-                return;
-            }
-
-            if (!employeeemailAddress.match(emailRegex)) {
-                alert('El correo debe cumplir con el formato.');
-                return;
-            }
-
-            // Si todas las validaciones pasan, enviar los datos al servidor
-            var formData = {
-                idType: 1,
-                employeeName: employeeName,
-                employeeAddress: employeeAddress,
-                emailAddress: emailAddress,
-                phoneNumber: phoneNumber
-            };
-
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "https://proyectorg-api.azurewebsites.net/api/Employee",
-                data: JSON.stringify(formData),
-                dataType: "json",
-                success: function (data) {
-                    // Procesar la respuesta si es necesario
-                    // Puedes mostrar un mensaje de éxito o actualizar la lista de Colaboradors, por ejemplo
-                    $("#employeeName").val("");
-                    $("#employeeAddress").val("");
-                    $("#EmailAddress").val("");
-                    $("#PhoneNumber").val("");
-                    location.reload();
-                },
-                error: function (error) {
-                    // Manejar errores si es necesario
-                    console.log(error);
-                }
-            });
-        }
-    </script>
-
-    <script>
-        $(document).on('click', 'button[data-employee-id]', function () {
-            // Obtén el ID del Colaborador desde el atributo de datos del botón
-            const employeeId = parseInt($(this).data('employee-id'));
-
-            // A continuación, puedes llenar los campos del modal de edición
-            const employeeName = $(this).closest('.card').find('h5').text();
-            const employeeAddress = $(this).closest('.card').find('.mdi-map + span').text();
-            const emailAddress = $(this).closest('.card').find('.mdi-email + span').text();
-            const phoneNumber = $(this).closest('.card').find('.mdi-phone + span').text();
-
-            // Asignar los valores obtenidos a los campos del modal
-            $('#edit-employeeName').val(employeeName);
-            $('#edit-employeeAddress').val(employeeAddress);
-            $('#edit-EmailAddress').val(emailAddress);
-            $('#edit-PhoneNumber').val(phoneNumber);
-
-            // Asignar el valor del Colaborador ID al atributo data para uso posterior
-            $('#save-edit').attr('data-employee-id', employeeId);
-
-            // Mostrar el modal de edición
-            $('#modal-edit-contact').modal('show');
-        });
-
-        // Manejar el evento "Guardar" en el modal de edición
-        $('#save-edit').click(function () {
-            // Obtener el ID del Colaborador del atributo data y convertirlo a número entero
-            const employeeId = parseInt($('#save-edit').data('employee-id'), 10);
-
-            // Obtener los valores de los campos de edición
-            var editedemployeeName = $('#edit-employeeName').val();
-            var editedemployeeAddress = $('#edit-employeeAddress').val();
-            var editedEmailAddress = $('#edit-EmailAddress').val();
-            var editedPhoneNumber = $('#edit-PhoneNumber').val();
-
-            // Expresión regular para validar un número de teléfono de 8 dígitos
-            var phoneRegex = /^\d{8}$/;
-
-            // Expresión regular para validar que el nombre no contenga números
-            var nameRegex = /^[A-Za-z ]+$/;
-
-            // Validar el formato del correo electrónico
-            //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-
-            if (!editedemployeeName.match(nameRegex)) {
-                alert('El nombre no puede contener números ni caracteres especiales.');
-                return;
-            }
-
-            if (!editedPhoneNumber.match(phoneRegex)) {
-                alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
-                return;
-            }
-
-            if (!employeeemailAddress.match(emailRegex)) {
-                alert('El correo debe cumplir con el formato.');
-                return;
-            }
-
-            // Crea un objeto con los datos editados del Colaborador
-            var editedemployee = {
-                employeeID: employeeId, // Ajusta el nombre de la propiedad según tu API
-                idType: 1,
-                employeeName: editedemployeeName,
-                employeeAddress: editedemployeeAddress,
-                emailAddress: editedEmailAddress,
-                phoneNumber: editedPhoneNumber
-            };
-
-            // Realiza una solicitud PUT o PATCH a la API para guardar los cambios
-            $.ajax({
-                url: `https://proyectorg-api.azurewebsites.net/api/Employee`,
-                type: 'PUT',
-                contentType: 'application/json', // Configura el tipo de contenido como JSON
-                data: JSON.stringify(editedemployee),
-                dataType: "json",
-                success: function (data) {
-                    // Colaborador editado exitosamente
-                    alert('Colaborador editado con éxito.');
-                    // Cierra el modal de edición
-                    $('#modal-edit-contact').modal('hide');
-                    location.reload();
-                },
-                error: function (error) {
-                    // Ocurrió un error al editar el Colaborador
-                    console.error('Error al editar el Colaborador:', error);
-                }
-            });
-        });
-    </script>
-
+   
     <script>
         var d = new Date();
         var year = d.getFullYear();

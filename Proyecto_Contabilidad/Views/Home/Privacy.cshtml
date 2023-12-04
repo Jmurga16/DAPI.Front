@@ -1,4 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    .exchange-type {
+        font-size: 1.7em;
+        color: gray;
+        vertical-align: middle;
+    }
+
+    .exchange-value {
+        font-size: 4em;
+        padding: 0 .2em;
+        vertical-align: middle;
+    }
+</style>
+
+
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8" />
@@ -29,6 +48,7 @@
     <link href="~/images/favicon.png" rel="shortcut icon" />
 
     <script src="~/plugins/nprogress/nprogress.js"></script>
+
 </head>
 
 
@@ -69,7 +89,7 @@
                                 <span class="nav-text">Principal</span>
                             </a>
                         </li>
-                                                
+
                     </ul>
 
                 </div>
@@ -140,6 +160,33 @@
                 </div>
             </div>
 
+            <br />
+
+            <br />
+
+            <div>
+                <h2 class="text-center">
+                    Valores obtenidos del servicio del Banco Central de Costa Rica
+                </h2>
+
+                <div>
+                    <div class="col text-center">
+                        <span class="exchange-type">
+                            Compra
+                        </span>
+                        <span class="exchange-value" id="buy-value"></span>
+                    </div>
+                    <div class="col text-center">
+                        <span class="exchange-type">
+                            Venta
+                        </span>
+                        <span class="exchange-value" id="sell-value"></span>
+                    </div>
+                </div>
+
+
+            </div>
+
         </div>
     </div>
 
@@ -155,6 +202,25 @@
     <script src="~/js/custom.js"></script>
 
     <script src="~/scripts/home.js"></script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("https://tipodecambio.paginasweb.cr/api", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    $("#buy-value").text(data.compra)
+                    $("#sell-value").text(data.venta)
+                });
+        });
+    </script>
+
 
 </body>
 </html>

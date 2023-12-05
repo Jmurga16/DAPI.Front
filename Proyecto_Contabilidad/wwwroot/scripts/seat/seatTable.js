@@ -3,11 +3,12 @@ var route = location.href;
 var seat_id = route.split("/")[5]
 
 var accounts = [];
+var dataSeat;
+var statusSeat;
 //#endregion
 
 document.addEventListener("DOMContentLoaded", () => {
-    getAccounts()
-
+    getSeat()    
 });
 
 function getAccounts() {
@@ -49,14 +50,17 @@ function loadDataFromAPI() {
                     }
                 })
 
+                var amountDolar = dataSeat.exchangE_RATE != null ? item.amount : ""
+                var amountCRC = dataSeat.exchangE_RATE != null ? item.amount * dataSeat.exchangE_RATE : item.amount
+
 
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                                             <td>${accountCode}</td>
                                             <td>${accountName}</td>
-                                            <td>${item.amount}</td>
+                                            <td>${amountDolar}</td>
                                             <td>USD</td>
-                                            <td>${item.amount * 600}</td>
+                                            <td>${amountCRC}</td>
                                             <td>CRC</td>
                                             <td>${item.description}</td>
                                             <td>
@@ -87,7 +91,7 @@ function postDetail() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: base_url + '/Seat/Post/' + seat_id,        
+        url: base_url + '/Seat/Post/' + seat_id,
         dataType: "json",
         success: function (data) {
 
@@ -96,9 +100,28 @@ function postDetail() {
             window.location.href = url_front + "Seat/List"
 
         },
-        error: function (error) {            
+        error: function (error) {
             console.log(error);
         }
     });
 
+}
+
+function getSeat() {
+
+    fetch(base_url + '/Seat/' + seat_id)
+        .then(response => response.json())
+        .then(data => {
+
+            dataSeat = data
+            console.log(dataSeat);
+
+            statusSeat = data.status;
+
+            getAccounts()
+
+        })
+        .catch(error => {
+            console.error('Error al cargar datos desde la API:', error);
+        });
 }

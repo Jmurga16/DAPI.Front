@@ -3,6 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDataFromAPI();
 });
 
+var customerId = 0
+
+function onInit() {
+    clearDataModal()
+    const customerCardsContainer = document.getElementById('customer-cards');
+    customerCardsContainer.innerHTML = "";
+    loadDataFromAPI();
+}
+
+
 function loadDataFromAPI() {
     fetch(base_url + '/Customer')
         .then(response => response.json())
@@ -13,10 +23,25 @@ function loadDataFromAPI() {
             data.forEach(customer => {
                 const cardHtml = `
                                     <div class="col-lg-6 col-xl-4">
-                                        <div class="card card-default p-4" data-toggle="modall" data-target="#modal-contact" data-customer-id="${customer.customerID}">
+                                        <div class="card card-default p-4" data-toggle="modall" data-target="#modal-contact" data-customer-id="${customer.customerId}">
                                             <a href="javascript:0" class="media text-secondary" data-toggle="modal" data-target="#modal-contact">
                                                 <div class="media-body">
-                                                    <h5 class="mt-0 mb-2 text-dark">${customer.customerName}</h5>
+                                                    
+                                                     <div class="d-flex justify-content-between">
+                                                        <h5 class="mt-0 mb-2 text-dark">${customer.customerName}</h5>
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                                                                
+                                                                <a class="dropdown-item" data-toggle="modal" data-target="#modal-edit-contact" onclick="setDataModal(${customer.customerId})">Editar</a>
+                                                                <a class="dropdown-item" onclick="deleteCustomer(${customer.customerId})" >Eliminar</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
                                                     <ul class="list-unstyled text-smoke text-smoke">
                                                         <li class="d-flex">
                                                             <i class="mdi mdi-map mr-1"></i>
@@ -29,16 +54,7 @@ function loadDataFromAPI() {
                                                         <li class="d-flex">
                                                             <i class="mdi mdi-phone mr-1"></i>
                                                             <span>${customer.phoneNumber}</span>
-                                                        </li>
-                                                        <li class="d-flex">
-                                                        <i class="mdi mdi-id mr-1"></i>
-                                                        <span style="opacity: 0;">${customer.customerID}</span>
-                                                        </li>
-                                                        <li class="d-flex">
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-edit-contact" data-customer-id="${customer.customerID}">
-                                                            Editar
-                                                        </button>
-                                                        </li>
+                                                        </li>                                                    
                                                     </ul>
                                                 </div>
                                             </a>
@@ -47,7 +63,7 @@ function loadDataFromAPI() {
                                         </div>
                                     </div>
                                 `;
-                //alert(customer.customerID);
+
                 // Agregar la tarjeta al contenedor
                 customerCardsContainer.innerHTML += cardHtml;
             });
@@ -63,60 +79,35 @@ function addCustomer() {
     var emailAddress = $("#EmailAddress").val();
     var phoneNumber = $("#PhoneNumber").val();
 
-    // Verificar si algún campo está vacío
-    if (!customerName || !customerAddress || !emailAddress || !phoneNumber) {
-        // Mostrar un mensaje de error si algún campo está vacío
-        alert("Por favor, complete todos los campos.");
-        return; // Evita el envío del formulario
-    }
+    customerId = 0;
 
-    // Expresión regular para validar un número de teléfono de 8 dígitos
-    var phoneRegex = /^\d{8}$/;
-
-    // Expresión regular para validar que el nombre no contenga números
-    var nameRegex = /^[A-Za-z ]+$/;
-
-    // Validar el formato del correo electrónico
-    //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-    if (!customerName.match(nameRegex)) {
-        alert('El nombre no puede contener números ni caracteres especiales.');
-        return;
-    }
-
-    if (!phoneNumber.match(phoneRegex)) {
-        alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
-        return;
-    }
-
-    if (!employeeemailAddress.match(emailRegex)) {
-        alert('El correo debe cumplir con el formato.');
+    // Validaciones
+    if (!validateFormCustomer()) {
         return;
     }
 
     // Si todas las validaciones pasan, enviar los datos al servidor
     var formData = {
-        idType: 1,
-        customerName: customerName,
-        customerAddress: customerAddress,
-        emailAddress: emailAddress,
-        phoneNumber: phoneNumber
+        IdType: 1,
+        CustomerName: customerName,
+        CustomerAddress: customerAddress,
+        EmailAddress: emailAddress,
+        PhoneNumber: phoneNumber,
+        Active: true
     };
 
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://proyectorg-api.azurewebsites.net/api/Customer",
+        url: base_url + '/Customer',
         data: JSON.stringify(formData),
         dataType: "json",
         success: function (data) {
-            // Procesar la respuesta si es necesario
-            // Puedes mostrar un mensaje de éxito o actualizar la lista de clientes, por ejemplo
-            $("#CustomerName").val("");
-            $("#CustomerAddress").val("");
-            $("#EmailAddress").val("");
-            $("#PhoneNumber").val("");
-            location.reload();
+
+            alertSuccess("Cliente creado con exito.")
+            onInit();
+            $('#modal-add-contact').modal('hide');
+
         },
         error: function (error) {
             // Manejar errores si es necesario
@@ -125,39 +116,27 @@ function addCustomer() {
     });
 }
 
-$(document).on('click', 'button[data-customer-id]', function () {
-    // Obtén el ID del cliente desde el atributo de datos del botón
-    const customerId = parseInt($(this).data('customer-id'));
 
-    // A continuación, puedes llenar los campos del modal de edición
-    const customerName = $(this).closest('.card').find('h5').text();
-    const customerAddress = $(this).closest('.card').find('.mdi-map + span').text();
-    const emailAddress = $(this).closest('.card').find('.mdi-email + span').text();
-    const phoneNumber = $(this).closest('.card').find('.mdi-phone + span').text();
+function validateFormCustomer() {
+    var isValid = true;
+    var message = "";
+    console.log(customerId)
 
-    // Asignar los valores obtenidos a los campos del modal
-    $('#edit-customerName').val(customerName);
-    $('#edit-customerAddress').val(customerAddress);
-    $('#edit-EmailAddress').val(emailAddress);
-    $('#edit-PhoneNumber').val(phoneNumber);
+    if (customerId == 0) {
+        var CustomerName = $("#CustomerName").val();
+        var CustomerAddress = $("#CustomerAddress").val();
+        var EmailAddress = $("#EmailAddress").val();
+        var PhoneNumber = $("#PhoneNumber").val();
+    }
+    else {
+        var CustomerName = $("#edit-CustomerName").val();
+        var CustomerAddress = $("#edit-CustomerAddress").val();
+        var EmailAddress = $("#edit-EmailAddress").val();
+        var PhoneNumber = $("#edit-PhoneNumber").val();
+    }
 
-    // Asignar el valor del cliente ID al atributo data para uso posterior
-    $('#save-edit').attr('data-customer-id', customerId);
-
-    // Mostrar el modal de edición
-    $('#modal-edit-contact').modal('show');
-});
-
-// Manejar el evento "Guardar" en el modal de edición
-$('#save-edit').click(function () {
-    // Obtener el ID del cliente del atributo data y convertirlo a número entero
-    const customerId = parseInt($('#save-edit').data('customer-id'), 10);
-
-    // Obtener los valores de los campos de edición
-    var editedCustomerName = $('#edit-customerName').val();
-    var editedCustomerAddress = $('#edit-customerAddress').val();
-    var editedEmailAddress = $('#edit-EmailAddress').val();
-    var editedPhoneNumber = $('#edit-PhoneNumber').val();
+    // Validar el formato del correo electrónico
+    //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     // Expresión regular para validar un número de teléfono de 8 dígitos
     var phoneRegex = /^\d{8}$/;
@@ -165,70 +144,127 @@ $('#save-edit').click(function () {
     // Expresión regular para validar que el nombre no contenga números
     var nameRegex = /^[A-Za-z ]+$/;
 
-    // Validar el formato del correo electrónico
-    //var email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    // Verificar si algún campo está vacío
+    if (!CustomerName || !CustomerAddress || !EmailAddress || !PhoneNumber) {
+        isValid = false
+        message = `Todos los campos son obligatorios. Por favor, complete todos los campos.`
+    }
+    else if (!CustomerName.match(nameRegex)) {
+        isValid = false
+        message = 'El nombre no puede contener numeros ni caracteres especiales.'
+    }
+    else if (!PhoneNumber.match(phoneRegex)) {
+        isValid = false
+        message = 'El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).';
+    }
+    //else if (!emailAddress.match(emailRegex)) {
+    //    isValid = false
+    //    message = 'El correo debe cumplir con el formato.';
+    //}
 
 
-    if (!editedCustomerName.match(nameRegex)) {
-        alert('El nombre no puede contener números ni caracteres especiales.');
+    if (!isValid) {
+        alertWarning(message)
+    }
+
+    return isValid;
+}
+
+
+function setDataModal(id) {
+    customerId = id;
+
+    fetch(base_url + '/Customer/' + id)
+        .then(response => response.json())
+        .then(data => {
+
+            $("#edit-CustomerName").val(data.customerName);
+            $("#edit-CustomerAddress").val(data.customerAddress);
+            $("#edit-EmailAddress").val(data.emailAddress);
+            $("#edit-PhoneNumber").val(data.phoneNumber);
+
+        })
+        .catch(error => {
+            console.error('Error al cargar datos desde la API:', error);
+        });
+}
+
+function clearDataModal() {
+    accountId = 0;
+    $("#CustomerName").val("");
+    $("#CustomerAddress").val("");
+    $("#EmailAddress").val("");
+    $("#PhoneNumber").val("");
+}
+
+function editCustomer() {
+    // Obtener los valores de los campos
+    var customerName = $("#edit-CustomerName").val();
+    var customerAddress = $("#edit-CustomerAddress").val();
+    var emailAddress = $("#edit-EmailAddress").val();
+    var phoneNumber = $("#edit-PhoneNumber").val();
+
+    // Validaciones
+    if (!validateFormCustomer()) {
         return;
     }
 
-    if (!editedPhoneNumber.match(phoneRegex)) {
-        alert('El número de teléfono no cumple con el formato correcto (debe contener 8 dígitos numéricos).');
-        return;
-    }
-
-    if (!employeeemailAddress.match(emailRegex)) {
-        alert('El correo debe cumplir con el formato.');
-        return;
-    }
-
-    // Crea un objeto con los datos editados del cliente
-    var editedCustomer = {
-        customerID: customerId, // Ajusta el nombre de la propiedad según tu API
-        idType: 1,
-        customerName: editedCustomerName,
-        customerAddress: editedCustomerAddress,
-        emailAddress: editedEmailAddress,
-        phoneNumber: editedPhoneNumber
+    // Si todas las validaciones pasan, enviar los datos al servidor
+    var formData = {
+        CustomerId: customerId,
+        IdType: 1,
+        CustomerName: customerName,
+        CustomerAddress: customerAddress,
+        EmailAddress: emailAddress,
+        PhoneNumber: phoneNumber,
+        Active: true
     };
 
-    // Realiza una solicitud PUT o PATCH a la API para guardar los cambios
     $.ajax({
-        url: `https://proyectorg-api.azurewebsites.net/api/Customer`,
-        type: 'PUT',
-        contentType: 'application/json', // Configura el tipo de contenido como JSON
-        data: JSON.stringify(editedCustomer),
+        type: "PUT",
+        contentType: "application/json",
+        url: base_url + '/Customer',
+        data: JSON.stringify(formData),
         dataType: "json",
         success: function (data) {
-            // Cliente editado exitosamente
-            alert('Cliente editado con éxito.');
-            // Cierra el modal de edición
+
+            alertSuccess("Cliente modificado con exito.")
+            onInit();
             $('#modal-edit-contact').modal('hide');
-            location.reload();
+
         },
         error: function (error) {
-            // Ocurrió un error al editar el cliente
-            console.error('Error al editar el cliente:', error);
+            // Manejar errores si es necesario
+            console.log(error);
         }
     });
-});
+}
 
-function deleteCustomer(customerId) {
-    // Realiza una solicitud HTTP DELETE a la API para eliminar el cliente
-    $.ajax({
-        url: `https://proyectorg-api.azurewebsites.net/api/Customer`,
-        type: 'DELETE',
-        success: function (data) {
-            // Cliente eliminado exitosamente, puedes realizar alguna acción adicional si es necesario
-            console.log(`Cliente con ID ${customerId} eliminado.`);
-            // Recarga la página para actualizar la lista de clientes (puedes hacerlo de manera más eficiente actualizando la vista sin recargar)
-            location.reload();
-        },
-        error: function (error) {
-            // Ocurrió un error al eliminar el cliente
-            console.error(`Error al eliminar el cliente con ID ${customerId}: ${error.responseText}`);
+function deleteCustomer(id) {
+    customerId = id;
+
+    Swal.fire({
+        title: `&#191;Desea eliminar el Cliente seleccionado?`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "DELETE",
+                contentType: "application/json",
+                url: base_url + '/Customer/' + customerId,
+                dataType: "json",
+                success: function (data) {
+                    alertSuccess("Cliente eliminado con exito.")
+                    onInit();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
         }
     });
 }

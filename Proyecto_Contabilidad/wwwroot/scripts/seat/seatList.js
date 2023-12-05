@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDataFromAPI()
 });
 
+function onInit() {    
+    const tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = "";
+    loadDataFromAPI();
+}
+
 function loadDataFromAPI() {
     fetch(base_url + '/Seat')
         .then(response => response.json())
@@ -13,7 +19,7 @@ function loadDataFromAPI() {
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                                             <td>${item.id}</td>
-                                            <td>${item.date_seat}</td>
+                                            <td>${item.datE_SEAT.slice(0, 10)}</td>
                                             <td>${item.reference}</td>                                          
                                             <td>
                                                 <div class="dropdown">
@@ -21,8 +27,8 @@ function loadDataFromAPI() {
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                                        <a class="dropdown-item" data-toggle="modal" data-target="#modal-edit-contact" href="#">Editar</a>
-                                                        <a class="dropdown-item" href="#">Eliminar</a>
+                                                        <a class="dropdown-item" onclick='goToEdit(${item.id})'>Editar</a>
+                                                        <a class="dropdown-item" onclick='deleteSeat(${item.id})'>Eliminar</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -34,9 +40,6 @@ function loadDataFromAPI() {
         .catch(error => {
             console.error('Error al cargar datos desde la API:', error);
         });
-
-    //let table = new DataTable('#productsTable');
-    //console.log(table)
 }
 
 
@@ -83,6 +86,38 @@ function addAccount() {
         error: function (error) {
             // Manejar errores si es necesario
             console.log(error);
+        }
+    });
+}
+
+function goToEdit(id) {
+    window.location.href = 'Details/' + id;
+}
+
+function deleteSeat(id) {
+    
+    Swal.fire({
+        title: `&#191;Desea eliminar el Asiento seleccionado?`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "DELETE",
+                contentType: "application/json",
+                url: base_url + '/Seat/' + id,
+                dataType: "json",
+                success: function (data) {
+                    alertSuccess("Asiento eliminado con exito.")
+                    onInit();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
         }
     });
 }

@@ -188,7 +188,7 @@
             <div class="card card-default">
                 <div class="card-header">
                     <a class="btn btn-primary" onclick="saveDetail()">Guardar</a>
-                    <a class="btn btn-primary" href="@Url.Action("CreateDetail", "Seat")">Siguiente</a>
+                    <a class="btn btn-primary" onclick="addDetail()">Siguiente</a>
 
                 </div>
 
@@ -197,7 +197,7 @@
                     <form>
 
                         <label for="account_select">Cuenta</label>
-                        <select class="account_select" data-placeholder="Cuenta" name="account_select" style="width:100%">
+                        <select class="account_select" data-placeholder="Cuenta" name="account_select" style="width:100%" id="accountId">
                         </select>
 
                         <div class="form-group">

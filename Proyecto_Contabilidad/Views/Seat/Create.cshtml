@@ -156,7 +156,6 @@
                     <span class="page-title">Crear Asiento</span>
 
                     <div class="navbar-right ">
-                                               
                     </div>
 
                     <ul class="nav navbar-nav">
@@ -188,13 +187,13 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlInput1">currency</label>
-                            <select class="form-control" id="currency">
+                            <select class="form-control" id="currency" onchange="changeCurreny()">
                                 <option value="USD">USD</option>
                                 <option value="CRC">CRC</option>
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="exchangeContainer">
                             <label for="exampleFormControlInput4">Tipo de cambio</label>
                             <input type="number" id="exchange_rate" class="form-control" placeholder="" required>
                         </div>

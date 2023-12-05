@@ -11,11 +11,11 @@ function loadDataFromAPI() {
 
             listCustomer = data;
 
-            var select = document.getElementById('mySelect');
+            var select = document.getElementById('customerSelected');
             if (select) {
                 data.forEach(item => {
 
-                    $(select).append('<option value=' + item.customerID + '>' + item.customerName + '</option>');
+                    $(select).append('<option value=' + item.customerId + '>' + item.customerName + '</option>');
 
                 });
             }
@@ -26,18 +26,18 @@ function loadDataFromAPI() {
 }
 
 function goToPrincipal() {    
-    var customerSelected = $("#mySelect").val();
-        
+    var customerSelected = $("#customerSelected").val();
+
     listCustomer.forEach(item => {
-        if (item.customerID == customerSelected) {
-            currentCustomerID = item.customerID
+        if (item.customerId == customerSelected) {
+            currentCustomerId = item.customerId
             currentCustomerName = item.customerName
         }
     });
 
-    localStorage.setItem("currentCustomerID", currentCustomerID);
+    localStorage.setItem("currentCustomerID", currentCustomerId);
     localStorage.setItem("currentCustomerName", currentCustomerName);
-
+    
     window.location.href = url_front + 'Home/Principal';
 }
 

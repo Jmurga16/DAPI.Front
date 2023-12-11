@@ -89,6 +89,7 @@ function addAccount() {
         data: JSON.stringify(formData),
         dataType: "json",
         success: function (data) {
+            addLog("CREA EL CATALOGO DE CUENTA: " + AccountCode)
             clearDataModal()
             location.reload();
         },
@@ -185,6 +186,7 @@ function editAccount() {
         data: JSON.stringify(formData),
         dataType: "json",
         success: function (data) {
+            addLog("EDITA EL CATALOGO DE CUENTA: " + AccountCode)
             clearDataModal();
             location.reload();
         },
@@ -213,6 +215,7 @@ function deleteAccount(id) {
                 url: base_url + '/Account/' + accountId,
                 dataType: "json",
                 success: function (data) {
+                    addLog("ELIMINA EL CATALOGO DE CUENTA: " + AccountCode)
                     clearDataModal()
                     location.reload();
                 },

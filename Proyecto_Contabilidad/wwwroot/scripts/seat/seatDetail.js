@@ -46,6 +46,7 @@ function addDetail() {
             $("#amount").val("");
             $("#description").val("");
 
+            addLog("CREA EL DETALLE DE ASIENTO CON ID: " + data.id)
         },
         error: function (error) {
             // Manejar errores si es necesario
@@ -72,6 +73,7 @@ function saveDetail() {
         .then(data => {
 
             if (data.length > 1) {
+                addLog("GUARDA LOS DETALLES DE ASIENTO, DEL ASIENTO: " + seat_id)
                 window.location.href = url_front + "Seat/Details/" + seat_id;
             }
             else {

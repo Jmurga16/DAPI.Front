@@ -49,6 +49,8 @@ function addSeat() {
             $("#reference").val("");
             $("#status").val("");
 
+            addLog("CREA EL ASIENTO CON ID: " + data.id)
+
             window.location.href = url_front + "Seat/CreateDetail/" + data.id;
         },
         error: function (error) {

@@ -86,8 +86,7 @@ function loadDataFromAPI() {
 }
 
 function postDetail() {
-
-
+    
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -96,7 +95,7 @@ function postDetail() {
         success: function (data) {
 
             console.log(data)
-
+            addLog("POSTEA EL ASIENTO CON ID: " + seat_id)
             window.location.href = url_front + "Seat/List"
 
         },

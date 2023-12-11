@@ -105,6 +105,7 @@ function addCustomer() {
         success: function (data) {
 
             alertSuccess("Cliente creado con exito.")
+            addLog("CREA AL CLIENTE: " + customerName)
             onInit();
             $('#modal-add-contact').modal('hide');
 
@@ -115,7 +116,6 @@ function addCustomer() {
         }
     });
 }
-
 
 function validateFormCustomer() {
     var isValid = true;
@@ -169,7 +169,6 @@ function validateFormCustomer() {
 
     return isValid;
 }
-
 
 function setDataModal(id) {
     customerId = id;
@@ -229,6 +228,7 @@ function editCustomer() {
         success: function (data) {
 
             alertSuccess("Cliente modificado con exito.")
+            addLog("EDITA AL CLIENTE: " + customerName)
             onInit();
             $('#modal-edit-contact').modal('hide');
 
@@ -259,6 +259,7 @@ function deleteCustomer(id) {
                 dataType: "json",
                 success: function (data) {
                     alertSuccess("Cliente eliminado con exito.")
+                    addLog("ELIMINA AL CLIENTE CON ID: " + customerId)
                     onInit();
                 },
                 error: function (error) {

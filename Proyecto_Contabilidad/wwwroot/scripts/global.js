@@ -48,3 +48,32 @@ function logout() {
     localStorage.removeItem("employeeId");
     window.location.href = url_front;
 }
+
+function addLog(description) {
+    // Obtener los valores de los campos
+    var employeeId = localStorage.getItem("employeeId");
+    
+    // Si todas las validaciones pasan, enviar los datos al servidor
+    var formData = {
+        logId:0,
+        employeeId: employeeId,
+        logDescription: description,
+        dateTime: new Date(),        
+        employee: null
+    };
+
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: base_url + '/Log',
+        data: JSON.stringify(formData),
+        dataType: "json",
+        success: function (data) {
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}

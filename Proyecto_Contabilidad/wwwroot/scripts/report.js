@@ -38,8 +38,15 @@ function getDetailSeats() {
     fetch(base_url + '/SeatDetail/')
         .then(response => response.json())
         .then(data => {
-
-            listDetailSeats = data
+            
+            data.forEach(item => {
+                listSeats.forEach(opc => {
+                    if (item.seaT_ID == opc.id) {
+                        listDetailSeats.push(item)
+                    }
+                })                
+            })
+            
             getAccounts()
         })
         .catch(error => {

@@ -74,7 +74,7 @@ function deleteSeat(id) {
                 dataType: "json",
                 success: function (data) {
                     alertSuccess("Asiento eliminado con exito.")
-                    onInit();
+                    location.reload();
                 },
                 error: function (error) {
                     console.error(error);

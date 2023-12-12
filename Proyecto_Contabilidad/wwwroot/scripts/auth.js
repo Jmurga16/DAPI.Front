@@ -37,7 +37,26 @@ function login() {
 function recoverPassword() {
     const email = document.getElementById('email2').value;
 
-    console.log(email);
+    fetch(base_url + '/Login/recover/' + email, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if (data.result) {
+                alertSuccess("Your password is: " + data.password)
+            }
+            else {
+                alertError(`No existe el correo`)
+            }
+        })
+
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 function changePassword() {

@@ -46,8 +46,10 @@ function recoverPassword() {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            if (data.result) {
-                alertSuccess("Your password is: " + data.password)
+            if (data.success) {
+                localStorage.setItem("employeeId", data.employeeId);
+                window.location.href = '/Auth/ChangePassword';
+                //alertSuccess("Your password is: " + data.password)
             }
             else {
                 alertError(`No existe el correo`)
@@ -60,5 +62,34 @@ function recoverPassword() {
 }
 
 function changePassword() {
+    const id = localStorage.getItem("employeeId");
+    const newPassword = document.getElementById('NewPassword').value;
+    const rePassword = document.getElementById('RePassword').value;
 
+    if (newPassword != rePassword) {
+        alertWarning("Las credenciales deben ser iguales.")
+        return;
+    }
+
+    fetch(base_url + '/Login/change/' + id + "/" + newPassword, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if (data) {
+                alertSuccess("Exito")
+            }
+            setTimeout(() => {
+                window.location.href = '/Auth';
+            },3000)
+                        
+        })
+
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }

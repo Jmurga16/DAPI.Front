@@ -2,19 +2,29 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDataFromAPI()
 });
 
-function onInit() {    
+var listSeats = []
+function onInit() {
     const tableBody = document.getElementById('tableBody');
     tableBody.innerHTML = "";
     loadDataFromAPI();
 }
 
 function loadDataFromAPI() {
+
+    var customer_id = localStorage.getItem("currentCustomerID");
+    
     fetch(base_url + '/Seat')
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById('tableBody');
 
             data.forEach(item => {
+                if (item.customeR_ID == customer_id) {
+                    listSeats.push(item)
+                }
+            })
+
+            listSeats.forEach(item => {
 
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
@@ -42,60 +52,12 @@ function loadDataFromAPI() {
         });
 }
 
-
-function addAccount() {
-    // Obtener los valores de los campos
-    var AccountId = $("#accountId").val();
-    var AccountCode = $("#accountCode").val();
-    var NameAccount = $("#nameAccount").val();
-    var TypeAccount = $("#typeAccount").val();
-    var conversionValue = $("#conversion").val();
-
-    // Verificar si algún campo está vacío
-    if (AccountCode === "" || NameAccount === "" || TypeAccount === "" || conversionValue === "") {
-        alert("Todos los campos son obligatorios. Por favor, complete todos los campos.");
-        return; // Detener la ejecución si hay campos vacíos
-    }
-
-    // Si todas las validaciones pasan, enviar los datos al servidor
-    var formData = {
-        accountId: AccountId,
-        accountName: NameAccount,
-        accountCode: AccountCode,
-        accountType: TypeAccount,
-        conversion: conversionValue
-    };
-
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: base_url + '/Account',
-        data: JSON.stringify(formData),
-        dataType: "json",
-        success: function (data) {
-            // Procesar la respuesta si es necesario
-            // Puedes mostrar un mensaje de éxito o actualizar la lista de clientes, por ejemplo
-            $("#accountId").val("");
-            $("#nameAccount").val("");
-            $("#accountCode").val("");
-            $("#typeAccount").val("");
-            $("#conversion").val("");
-            location.reload();
-        },
-        error: function (error) {
-            // Manejar errores si es necesario
-            console.log(error);
-        }
-    });
-}
-
 function goToEdit(id) {
     window.location.href = 'Details/' + id;
 }
 
 function deleteSeat(id) {
-    
+
     Swal.fire({
         title: `&#191;Desea eliminar el Asiento seleccionado?`,
         icon: "question",

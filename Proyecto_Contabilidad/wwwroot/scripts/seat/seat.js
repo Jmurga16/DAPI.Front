@@ -9,7 +9,8 @@ function addSeat() {
     var currency = $("#currency").val(); 
     var exchange_rate = $("#exchange_rate").val() == "" ? null : $("#exchange_rate").val()
     var reference = $("#reference").val();
-    var customer_id = 1;
+    var customer_id = localStorage.getItem("currentCustomerID");
+        
 
     // Verificar si algún campo está vacío
     if (date_seat === "" || currency === "" || reference === "") {
@@ -29,7 +30,7 @@ function addSeat() {
         currency: currency,
         exchange_rate: exchange_rate,
         reference: reference,
-        customer_id: 1,
+        customer_id: customer_id,
         status: false
     };
 

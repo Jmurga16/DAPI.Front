@@ -27,6 +27,8 @@
 
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="~/css/style.css" />
@@ -34,6 +36,7 @@
     <!-- FAVICON -->
     <link href="~/images/favicon.png" rel="shortcut icon" />
 
+    <script src="~/plugins/jquery/jquery.min.js"></script>
     <script src="~/plugins/nprogress/nprogress.js"></script>
 </head>
 
@@ -78,7 +81,7 @@
                         </li>
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Colaboradores", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("List", "Employee")">
                                 <i class="mdi mdi-briefcase-account-outline"></i>
                                 <span class="nav-text">Colaboradores</span>
                             </a>
@@ -96,7 +99,7 @@
                         </li>
 
                         <li>
-                            <a class="sidenav-item-link" href="@Url.Action("Cliente", "Home")">
+                            <a class="sidenav-item-link" href="@Url.Action("List", "Customer")">
                                 <i class="mdi mdi-account"></i>
                                 <span class="nav-text">Clientes</span>
                             </a>
@@ -155,8 +158,6 @@
             </div>
         </aside>
 
-
-
         <!-- ====================================
         ——— PAGE WRAPPER
         ===================================== -->
@@ -187,17 +188,15 @@
                 </nav>
             </header>
 
-
-
-
             <!-- ====================================
             ——— CONTENT WRAPPER
             ===================================== -->
             <!-- Cuentas -->
             <div class="card card-default">
                 <div class="card-header">
+                    <a class="btn btn-primary" onclick="goToCreateDetail()">Agregar Detalle</a>
                     <a class="btn btn-primary" onclick="postDetail()">Postear</a>
-                    <a class="btn btn-primary" href="@Url.Action("Nuevo", "Home")">Cancelar</a>
+                    <a class="btn btn-primary" href="@Url.Action("List", "Seat")">Cancelar</a>
                 </div>
 
                 <div class="card-body">
@@ -222,6 +221,50 @@
 
                 </div>
 
+                <!-- Modal de edición -->
+                <div class="modal fade" id="modal-edit-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <form id="edit-employee-form">
+                                <div class="modal-header px-4">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Editar Detalle de Asiento</h5>
+                                </div>
+                                <div class="modal-body px-4">
+                                    <div class="row mb-2">
+
+                                        <form>
+
+                                            <div class="form-group">
+                                                <label for="account_select">Cuenta</label>
+                                                <select class="account_select" data-placeholder="Cuenta" name="account_select" style="width:100%" id="accountId">
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="amount">Monto</label>
+                                                <input type="number" class="form-control" id="amount" placeholder="">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="description">Descripción</label>
+                                                <input type="text" class="form-control" id="description" placeholder="">
+                                            </div>
+
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer px-4">
+                                    <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary btn-pill" onclick="editDetail()" data-dismiss="modal">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <!-- Footer -->
                 <footer class="footer mt-auto">
@@ -239,24 +282,24 @@
 
             </div>
         </div>
+    </div>
+
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/plugins/simplebar/simplebar.min.js"></script>
+    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+    <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+
+    <script src="~/plugins/daterangepicker/moment.min.js"></script>
+    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
 
 
-        <script src="~/plugins/jquery/jquery.min.js"></script>
-        <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="~/plugins/simplebar/simplebar.min.js"></script>
-        <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 
-        <script src="~/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/mono.js"></script>
 
-        <script src="~/plugins/daterangepicker/moment.min.js"></script>
-        <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
-
-        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-        <script src="~/js/mono.js"></script>
-
-        <script src="~/scripts/seat/seatTable.js" defer></script>
+    <script src="~/scripts/seat/seatTable.js" defer></script>
 
 </body>
 </html>
